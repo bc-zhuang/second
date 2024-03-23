@@ -61,20 +61,6 @@
                   </div>
                 </div>
               </div>
-<!--              <div class="count-item flex-view" @click="share()">-->
-<!--                <div class="count-img">-->
-<!--                  <img :src="ShareIcon" alt="" />-->
-<!--                </div>-->
-<!--                <div class="count-box flex-view">-->
-<!--                  <div class="count-text-box">-->
-<!--                    <span class="count-title">分享</span>-->
-<!--                  </div>-->
-<!--                  <div class="count-num-box">-->
-<!--                    <span class="num-text"></span>-->
-<!--                    <img :src="WeiboShareIcon" class="mg-l" />-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--              </div>-->
             </div>
           </div>
         </div>
@@ -119,7 +105,7 @@
               <div class="comments-list">
                 <div class="comment-item" v-for="item in commentData">
                   <div class="flex-item flex-view">
-                    <img :src="AvatarIcon" class="avator" />
+                    <img :src="avatar" class="avator" />
                     <div class="person">
                       <div class="name">{{ item.username }}</div>
                       <div class="time">{{ item.commentTime }}</div>
@@ -171,10 +157,8 @@
   import AddIcon from '/@/assets/images/add.svg';
   import WantIcon from '/@/assets/images/want-read-hover.svg';
   import RecommendIcon from '/@/assets/images/recommend-hover.svg';
-  import ShareIcon from '/@/assets/images/share-icon.svg';
-  import WeiboShareIcon from '/@/assets/images/wb-share.svg';
   import AvatarIcon from '/@/assets/images/avatar.jpg';
-  import { detailApi, listApi as listThingList } from '/@/api/thing';
+  import { detailThingApi, listApi as listThingList } from '/@/api/thing';
   import { listThingCommentsApi, createApi as createCommentApi, likeApi } from '/@/api/comment';
   import { wishApi } from '/@/api/thingWish';
   import { collectApi } from '/@/api/thingCollect';
@@ -182,6 +166,7 @@
   import { useRoute, useRouter } from 'vue-router/dist/vue-router';
   import { useUserStore } from '/@/store';
   import { getFormatTime } from '/@/utils';
+  import { detailApi } from '/@/api/user';
 
   const router = useRouter();
   const route = useRoute();
@@ -199,21 +184,45 @@
   let order = ref('recent'); // 默认排序最新
 
   let commentRef = ref();
+  let avatar = ref();
 
   onMounted(() => {
     thingId.value = route.query.id.trim();
     getThingDetail();
     getRecommendThing();
     getCommentList();
+    // ref 来定义 commentData 响应式数据，
+    // 并在 onMounted 钩子函数中通过 watch 监听 commentData 数组的变化。
+    // 当数组发生变化时，会依次触发 handleCommentItemClick 方法。
+    watch(
+      commentData,
+      (newVal) => {
+        newVal.forEach((item) => {
+          handleCommentItemClick(item);
+        });
+      },
+      { deep: true },
+    );
   });
 
+  const handleCommentItemClick = (item) => {
+    let userId = item.userId;
+    detailApi({ userId: userId })
+      .then((res) => {
+        console.log(res.data.avatar);
+        avatar.value = BASE_URL + '/api/staticfiles/avatar/' + res.data.avatar;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   const selectTab = (index) => {
     selectTabIndex.value = index;
     tabUnderLeft.value = 6 + 54 * index;
   };
 
   const getThingDetail = () => {
-    detailApi({ id: thingId.value })
+    detailThingApi({ id: thingId.value })
       .then((res) => {
         detailData.value = res.data;
         detailData.value.cover = BASE_URL + '/api/staticfiles/image/' + detailData.value.cover;
@@ -252,20 +261,15 @@
       message.warn('请先登录');
     }
   };
-  const share = () => {
-    let content = '分享一个非常好玩的网站 ' + window.location.href;
-    let shareHref = 'http://service.weibo.com/share/share.php?title=' + content;
-    window.open(shareHref);
-  };
   const handleOrder = (detailData) => {
     const userId1 = userStore.user_id;
     if (userId1) {
-      if (detailData.status === '1' || detailData.userId == userId1) {
-        if (detailData.status === '1') {
-          message.warn('商品已下架');
+      if (detailData.status === '1' || detailData.userId == userId1 || detailData.repertory === '0') {
+        if (detailData.userId == userId1) {
+          message.warn('不能购买自己上架的商品');
           // message.warn('userid:' + userId1 + ',detail.userid:' + detailData.userId);
         } else {
-          message.warn('不能购买自己上架的商品');
+          message.warn('商品已下架或库存不足');
         }
       } else {
         console.log(detailData);
@@ -295,7 +299,7 @@
           }
         });
         console.log(res);
-        recommendData.value = res.data.slice(0, 6);
+        recommendData.value = res.data.slice(0, 4);
       })
       .catch((err) => {
         console.log(err);

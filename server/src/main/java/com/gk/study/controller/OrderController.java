@@ -125,8 +125,13 @@ public class OrderController {
     @RequestMapping(value = "/updateOrderPayStatus", method = RequestMethod.POST)
     @Transactional
     public APIResponse updateOrderPayStatus(String userId, String thingId, int count){
-        service.updateOrderPayStatus(userId, thingId, count);
-        return new APIResponse(ResponeCode.SUCCESS, "支付成功");
+        int i = service.updateOrderPayStatus(userId, thingId, count);
+        if(i == 1){
+            return new APIResponse(ResponeCode.SUCCESS, "支付成功");
+        }
+        else {
+            return new APIResponse(ResponeCode.FAIL, "支付失败");
+        }
     }
 
 }

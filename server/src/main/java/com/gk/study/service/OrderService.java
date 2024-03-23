@@ -18,5 +18,5 @@ public interface OrderService {
 
     void updateOrderExpressAndStatus(Order order);
 
-    void updateOrderPayStatus(String userId, String thingId, int count);
+    int updateOrderPayStatus(String userId, String thingId, int count);
 }

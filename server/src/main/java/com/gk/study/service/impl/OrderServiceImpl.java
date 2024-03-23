@@ -76,7 +76,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     }
 
     @Override
-    public void updateOrderPayStatus(String userId, String thingId, int count) {
+    public int updateOrderPayStatus(String userId, String thingId, int count) {
         long ct = System.currentTimeMillis();
         // 找到该用户该商品的最新的订单
         QueryWrapper<Order> queryWrapper = new QueryWrapper<>();
@@ -87,19 +87,26 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
             for(Order o : list){
                 order = o;
             }
-            order.setStatus("2");
-            // 把该订单的status改为2，并且添加支付时间
-            UpdateWrapper<Order> updateWrapper = new UpdateWrapper<>();
-            updateWrapper.eq("id", order.getId()).set("status", order.getStatus()).set("pay_time", String.valueOf(ct));
-            mapper.update(null, updateWrapper);
             // 在商品表中减去该商品的数量
             Thing thing = thingMapper.selectById(order.getThingId());
             if(thing != null){
                 int count1 = Integer.parseInt(thing.getRepertory()) - count;
-                UpdateWrapper<Thing> updateWrapper1 = new UpdateWrapper<>();
-                updateWrapper1.eq("id", order.getThingId()).set("repertory", count1);
-                thingMapper.update(null, updateWrapper1);
+                if(count >= 0){
+                    UpdateWrapper<Thing> updateWrapper1 = new UpdateWrapper<>();
+                    updateWrapper1.eq("id", order.getThingId()).set("repertory", count1);
+                    thingMapper.update(null, updateWrapper1);
+                }
+                else {
+                    return 0;
+                }
             }
+            // 把该订单的status改为2，并且添加支付时间
+            order.setStatus("2");
+            UpdateWrapper<Order> updateWrapper = new UpdateWrapper<>();
+            updateWrapper.eq("id", order.getId()).set("status", order.getStatus()).set("pay_time", String.valueOf(ct));
+            mapper.update(null, updateWrapper);
+            return 1;
         }
+        return 0;
     }
 }

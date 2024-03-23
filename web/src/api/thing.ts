@@ -17,7 +17,7 @@ const createApi = async (data: any) =>
 const updateApi = async (data: any) =>
   post<any>({ url: URL.update, data: data, headers: { 'Content-Type': 'multipart/form-data;charset=utf-8' } });
 const deleteApi = async (params: any) => post<any>({ url: URL.delete, params: params, headers: {} });
-const detailApi = async (params: any) => get<any>({ url: URL.detail, params: params, headers: {} });
+const detailThingApi = async (params: any) => get<any>({ url: URL.detail, params: params, headers: {} });
 const listByIdApi = async (params: any) => get<any>({ url: URL.listById, params: params, headers: {} });
 
-export { listApi, createApi, updateApi, deleteApi, detailApi, listByIdApi };
+export { listApi, createApi, updateApi, deleteApi, detailThingApi, listByIdApi };

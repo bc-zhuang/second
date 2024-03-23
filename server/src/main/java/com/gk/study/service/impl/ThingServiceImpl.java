@@ -11,10 +11,8 @@ import com.gk.study.service.ThingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -81,7 +79,12 @@ public class ThingServiceImpl extends ServiceImpl<ThingMapper, Thing> implements
     @Override
     public void createThing(Thing thing) {
         System.out.println(thing);
-        thing.setCreateTime(String.valueOf(System.currentTimeMillis()));
+
+        Date date = new Date(System.currentTimeMillis());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        String formattedDate = sdf.format(date);
+
+        thing.setCreateTime(formattedDate);
 
         if (thing.getPv() == null) {
             thing.setPv("0");

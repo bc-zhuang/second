@@ -172,8 +172,8 @@
         });
         console.log(res);
         // contentData.thingData = res.data;
-        // 进行数组过滤，把status不为0的数据删除掉
-        contentData.thingData = res.data.filter((item) => item.status === '0');
+        // 进行数组过滤，把status不为0和商品数量为0的数据删除掉
+        contentData.thingData = res.data.filter((item) => item.status === '0' && item.repertory > 0);
         contentData.total = contentData.thingData.length;
         changePage(1);
       })
