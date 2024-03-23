@@ -1,0 +1,180 @@
+2024-03-20 00:02:46.663 [ http-nio-9100-exec-3 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 88 ] - token==>12e4f1278c9e7d8375cda1b580261255
+2024-03-20 00:17:41.629 [ http-nio-9100-exec-4 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 74 ] - token==>f159053ec4a0e4a0e3c66cfd7c254853
+2024-03-20 00:32:18.087 [ http-nio-9100-exec-4 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 88 ] - token==>12e4f1278c9e7d8375cda1b580261255
+2024-03-20 00:32:23.898 [ http-nio-9100-exec-7 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 88 ] - token==>12e4f1278c9e7d8375cda1b580261255
+2024-03-20 00:32:46.873 [ http-nio-9100-exec-2 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 88 ] - token==>12e4f1278c9e7d8375cda1b580261255
+2024-03-20 00:32:52.881 [ http-nio-9100-exec-10 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 88 ] - token==>12e4f1278c9e7d8375cda1b580261255
+2024-03-20 00:35:48.876 [ http-nio-9100-exec-1 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 74 ] - token==>f159053ec4a0e4a0e3c66cfd7c254853
+2024-03-20 00:35:56.295 [ http-nio-9100-exec-2 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 74 ] - token==>f159053ec4a0e4a0e3c66cfd7c254853
+2024-03-20 00:37:15.285 [ http-nio-9100-exec-10 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 74 ] - token==>f159053ec4a0e4a0e3c66cfd7c254853
+2024-03-20 00:40:13.135 [ http-nio-9100-exec-9 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 74 ] - token==>f159053ec4a0e4a0e3c66cfd7c254853
+2024-03-20 00:40:19.232 [ http-nio-9100-exec-2 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 74 ] - token==>f159053ec4a0e4a0e3c66cfd7c254853
+2024-03-20 00:40:51.740 [ http-nio-9100-exec-5 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 74 ] - token==>f159053ec4a0e4a0e3c66cfd7c254853
+2024-03-20 00:40:55.268 [ http-nio-9100-exec-6 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 88 ] - token==>12e4f1278c9e7d8375cda1b580261255
+2024-03-20 00:54:21.998 [ http-nio-9100-exec-6 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 74 ] - token==>f159053ec4a0e4a0e3c66cfd7c254853
+2024-03-20 00:54:39.749 [ http-nio-9100-exec-9 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 74 ] - token==>f159053ec4a0e4a0e3c66cfd7c254853
+2024-03-20 00:54:54.935 [ http-nio-9100-exec-2 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 74 ] - token==>f159053ec4a0e4a0e3c66cfd7c254853
+2024-03-20 00:55:01.046 [ http-nio-9100-exec-9 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 74 ] - token==>f159053ec4a0e4a0e3c66cfd7c254853
+2024-03-20 01:13:18.683 [ http-nio-9100-exec-9 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 88 ] - token==>12e4f1278c9e7d8375cda1b580261255
+2024-03-20 01:13:19.283 [ http-nio-9100-exec-1 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 88 ] - token==>12e4f1278c9e7d8375cda1b580261255
+2024-03-20 01:13:19.776 [ http-nio-9100-exec-3 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 88 ] - token==>12e4f1278c9e7d8375cda1b580261255
+2024-03-20 01:13:20.255 [ http-nio-9100-exec-10 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 88 ] - token==>12e4f1278c9e7d8375cda1b580261255
+2024-03-20 01:13:26.723 [ http-nio-9100-exec-5 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 88 ] - token==>12e4f1278c9e7d8375cda1b580261255
+2024-03-20 01:13:27.159 [ http-nio-9100-exec-8 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 88 ] - token==>12e4f1278c9e7d8375cda1b580261255
+2024-03-20 01:13:27.543 [ http-nio-9100-exec-6 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 88 ] - token==>12e4f1278c9e7d8375cda1b580261255
+2024-03-20 01:13:27.932 [ http-nio-9100-exec-7 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 88 ] - token==>12e4f1278c9e7d8375cda1b580261255
+2024-03-20 01:13:28.608 [ http-nio-9100-exec-2 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 88 ] - token==>12e4f1278c9e7d8375cda1b580261255
+2024-03-20 01:13:29.065 [ http-nio-9100-exec-9 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 88 ] - token==>12e4f1278c9e7d8375cda1b580261255
+2024-03-20 01:13:33.050 [ http-nio-9100-exec-6 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 88 ] - token==>12e4f1278c9e7d8375cda1b580261255
+2024-03-20 01:13:33.721 [ http-nio-9100-exec-2 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 88 ] - token==>12e4f1278c9e7d8375cda1b580261255
+2024-03-20 01:13:34.518 [ http-nio-9100-exec-1 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 88 ] - token==>12e4f1278c9e7d8375cda1b580261255
+2024-03-20 01:13:38.295 [ http-nio-9100-exec-9 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 88 ] - token==>12e4f1278c9e7d8375cda1b580261255
+2024-03-20 01:13:38.852 [ http-nio-9100-exec-7 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 88 ] - token==>12e4f1278c9e7d8375cda1b580261255
+2024-03-20 01:13:39.275 [ http-nio-9100-exec-5 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 88 ] - token==>12e4f1278c9e7d8375cda1b580261255
+2024-03-20 01:13:39.591 [ http-nio-9100-exec-8 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 88 ] - token==>12e4f1278c9e7d8375cda1b580261255
+2024-03-20 01:13:58.128 [ http-nio-9100-exec-10 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 88 ] - token==>12e4f1278c9e7d8375cda1b580261255
+2024-03-20 01:13:58.767 [ http-nio-9100-exec-4 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 88 ] - token==>12e4f1278c9e7d8375cda1b580261255
+2024-03-20 01:13:59.917 [ http-nio-9100-exec-3 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 88 ] - token==>12e4f1278c9e7d8375cda1b580261255
+2024-03-20 01:14:00.292 [ http-nio-9100-exec-6 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 88 ] - token==>12e4f1278c9e7d8375cda1b580261255
+2024-03-20 01:14:00.571 [ http-nio-9100-exec-2 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 88 ] - token==>12e4f1278c9e7d8375cda1b580261255
+2024-03-20 01:14:00.794 [ http-nio-9100-exec-1 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 88 ] - token==>12e4f1278c9e7d8375cda1b580261255
+2024-03-20 01:14:00.977 [ http-nio-9100-exec-9 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 88 ] - token==>12e4f1278c9e7d8375cda1b580261255
+2024-03-20 01:14:07.654 [ http-nio-9100-exec-1 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 88 ] - token==>12e4f1278c9e7d8375cda1b580261255
+2024-03-20 01:14:15.495 [ http-nio-9100-exec-2 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 88 ] - token==>12e4f1278c9e7d8375cda1b580261255
+2024-03-20 01:15:20.027 [ http-nio-9100-exec-3 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 88 ] - token==>12e4f1278c9e7d8375cda1b580261255
+2024-03-20 01:15:21.026 [ http-nio-9100-exec-1 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 88 ] - token==>12e4f1278c9e7d8375cda1b580261255
+2024-03-20 01:15:21.617 [ http-nio-9100-exec-10 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 88 ] - token==>12e4f1278c9e7d8375cda1b580261255
+2024-03-20 01:15:22.892 [ http-nio-9100-exec-5 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 88 ] - token==>12e4f1278c9e7d8375cda1b580261255
+2024-03-20 01:15:23.246 [ http-nio-9100-exec-4 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 88 ] - token==>12e4f1278c9e7d8375cda1b580261255
+2024-03-20 01:15:23.661 [ http-nio-9100-exec-3 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 88 ] - token==>12e4f1278c9e7d8375cda1b580261255
+2024-03-20 01:15:24.106 [ http-nio-9100-exec-1 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 88 ] - token==>12e4f1278c9e7d8375cda1b580261255
+2024-03-20 01:15:24.534 [ http-nio-9100-exec-10 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 88 ] - token==>12e4f1278c9e7d8375cda1b580261255
+2024-03-20 01:15:24.724 [ http-nio-9100-exec-5 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 88 ] - token==>12e4f1278c9e7d8375cda1b580261255
+2024-03-20 01:15:24.901 [ http-nio-9100-exec-4 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 88 ] - token==>12e4f1278c9e7d8375cda1b580261255
+2024-03-20 01:15:25.076 [ http-nio-9100-exec-3 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 88 ] - token==>12e4f1278c9e7d8375cda1b580261255
+2024-03-20 01:15:25.321 [ http-nio-9100-exec-1 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 88 ] - token==>12e4f1278c9e7d8375cda1b580261255
+2024-03-20 01:15:29.121 [ http-nio-9100-exec-9 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 88 ] - token==>12e4f1278c9e7d8375cda1b580261255
+2024-03-20 01:15:30.651 [ http-nio-9100-exec-6 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 88 ] - token==>12e4f1278c9e7d8375cda1b580261255
+2024-03-20 01:16:13.015 [ http-nio-9100-exec-7 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 88 ] - token==>12e4f1278c9e7d8375cda1b580261255
+2024-03-20 01:20:16.284 [ http-nio-9100-exec-8 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 74 ] - token==>f159053ec4a0e4a0e3c66cfd7c254853
+2024-03-20 01:20:17.387 [ http-nio-9100-exec-10 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 74 ] - token==>f159053ec4a0e4a0e3c66cfd7c254853
+2024-03-20 01:29:24.849 [ http-nio-9100-exec-10 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 88 ] - token==>12e4f1278c9e7d8375cda1b580261255
+2024-03-20 01:36:29.269 [ http-nio-9100-exec-9 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 74 ] - token==>f159053ec4a0e4a0e3c66cfd7c254853
+2024-03-20 01:48:09.002 [ http-nio-9100-exec-2 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 74 ] - token==>f159053ec4a0e4a0e3c66cfd7c254853
+2024-03-20 01:50:30.622 [ SpringApplicationShutdownHook ] - [ INFO  ] [ com.alibaba.druid.pool.DruidDataSource : 2063 ] - {dataSource-1} closing ...
+2024-03-20 01:50:30.631 [ SpringApplicationShutdownHook ] - [ INFO  ] [ com.alibaba.druid.pool.DruidDataSource : 2136 ] - {dataSource-1} closed
+2024-03-20 15:45:38.715 [ main ] - [ INFO  ] [ com.gk.study.MySpringApplication : 55 ] - Starting MySpringApplication using Java 1.8.0_391 on LAPTOP-KMAEH3VR with PID 72740 (C:\Users\bc175\Desktop\测试\java_shop-master\server\target\classes started by bc175 in C:\Users\bc175\Desktop\测试\java_shop-master)
+2024-03-20 15:45:38.717 [ main ] - [ INFO  ] [ com.gk.study.MySpringApplication : 659 ] - No active profile set, falling back to default profiles: default
+2024-03-20 15:45:39.629 [ main ] - [ INFO  ] [ org.apache.coyote.http11.Http11NioProtocol : 173 ] - Initializing ProtocolHandler ["http-nio-9100"]
+2024-03-20 15:45:39.630 [ main ] - [ INFO  ] [ org.apache.catalina.core.StandardService : 173 ] - Starting service [Tomcat]
+2024-03-20 15:45:39.630 [ main ] - [ INFO  ] [ org.apache.catalina.core.StandardEngine : 173 ] - Starting Servlet engine: [Apache Tomcat/9.0.53]
+2024-03-20 15:45:39.632 [ main ] - [ INFO  ] [ org.apache.catalina.core.AprLifecycleListener : 173 ] - Loaded Apache Tomcat Native library [1.2.39] using APR version [1.7.4].
+2024-03-20 15:45:39.632 [ main ] - [ INFO  ] [ org.apache.catalina.core.AprLifecycleListener : 173 ] - APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true], UDS [true].
+2024-03-20 15:45:39.632 [ main ] - [ INFO  ] [ org.apache.catalina.core.AprLifecycleListener : 173 ] - APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2024-03-20 15:45:39.636 [ main ] - [ INFO  ] [ org.apache.catalina.core.AprLifecycleListener : 173 ] - OpenSSL successfully initialized [OpenSSL 3.0.11 19 Sep 2023]
+2024-03-20 15:45:39.719 [ main ] - [ INFO  ] [ o.a.c.c.ContainerBase.[Tomcat].[localhost].[/api] : 173 ] - Initializing Spring embedded WebApplicationContext
+2024-03-20 15:45:39.806 [ main ] - [ INFO  ] [ c.a.d.s.b.a.DruidDataSourceAutoConfigure : 56 ] - Init DruidDataSource
+2024-03-20 15:45:39.900 [ main ] - [ INFO  ] [ com.alibaba.druid.pool.DruidDataSource : 975 ] - {dataSource-1} inited
+2024-03-20 15:45:40.094 [ main ] - [ WARN  ] [ c.b.mybatisplus.core.metadata.TableInfoHelper : 342 ] - Can not find table primary key in Class: "java.lang.Object".
+2024-03-20 15:45:40.094 [ main ] - [ WARN  ] [ c.b.mybatisplus.core.injector.DefaultSqlInjector : 56 ] - class java.lang.Object ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2024-03-20 15:45:40.860 [ main ] - [ INFO  ] [ org.apache.coyote.http11.Http11NioProtocol : 173 ] - Starting ProtocolHandler ["http-nio-9100"]
+2024-03-20 15:45:40.880 [ main ] - [ INFO  ] [ com.gk.study.MySpringApplication : 61 ] - Started MySpringApplication in 2.509 seconds (JVM running for 3.266)
+2024-03-20 15:46:58.996 [ http-nio-9100-exec-2 ] - [ INFO  ] [ o.a.c.c.ContainerBase.[Tomcat].[localhost].[/api] : 173 ] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-20 15:51:04.492 [ SpringApplicationShutdownHook ] - [ INFO  ] [ com.alibaba.druid.pool.DruidDataSource : 2063 ] - {dataSource-1} closing ...
+2024-03-20 15:51:04.500 [ SpringApplicationShutdownHook ] - [ INFO  ] [ com.alibaba.druid.pool.DruidDataSource : 2136 ] - {dataSource-1} closed
+2024-03-20 16:58:19.734 [ main ] - [ INFO  ] [ com.gk.study.MySpringApplication : 55 ] - Starting MySpringApplication using Java 1.8.0_391 on LAPTOP-KMAEH3VR with PID 71192 (C:\Users\bc175\Desktop\测试\java_shop-master\server\target\classes started by bc175 in C:\Users\bc175\Desktop\测试\java_shop-master)
+2024-03-20 16:58:19.736 [ main ] - [ INFO  ] [ com.gk.study.MySpringApplication : 659 ] - No active profile set, falling back to default profiles: default
+2024-03-20 16:58:20.416 [ main ] - [ INFO  ] [ org.apache.coyote.http11.Http11NioProtocol : 173 ] - Initializing ProtocolHandler ["http-nio-9100"]
+2024-03-20 16:58:20.416 [ main ] - [ INFO  ] [ org.apache.catalina.core.StandardService : 173 ] - Starting service [Tomcat]
+2024-03-20 16:58:20.417 [ main ] - [ INFO  ] [ org.apache.catalina.core.StandardEngine : 173 ] - Starting Servlet engine: [Apache Tomcat/9.0.53]
+2024-03-20 16:58:20.417 [ main ] - [ INFO  ] [ org.apache.catalina.core.AprLifecycleListener : 173 ] - Loaded Apache Tomcat Native library [1.2.39] using APR version [1.7.4].
+2024-03-20 16:58:20.417 [ main ] - [ INFO  ] [ org.apache.catalina.core.AprLifecycleListener : 173 ] - APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true], UDS [true].
+2024-03-20 16:58:20.418 [ main ] - [ INFO  ] [ org.apache.catalina.core.AprLifecycleListener : 173 ] - APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2024-03-20 16:58:20.421 [ main ] - [ INFO  ] [ org.apache.catalina.core.AprLifecycleListener : 173 ] - OpenSSL successfully initialized [OpenSSL 3.0.11 19 Sep 2023]
+2024-03-20 16:58:20.484 [ main ] - [ INFO  ] [ o.a.c.c.ContainerBase.[Tomcat].[localhost].[/api] : 173 ] - Initializing Spring embedded WebApplicationContext
+2024-03-20 16:58:20.545 [ main ] - [ INFO  ] [ c.a.d.s.b.a.DruidDataSourceAutoConfigure : 56 ] - Init DruidDataSource
+2024-03-20 16:58:21.118 [ main ] - [ INFO  ] [ com.alibaba.druid.pool.DruidDataSource : 975 ] - {dataSource-1} inited
+2024-03-20 16:58:21.243 [ main ] - [ WARN  ] [ c.b.mybatisplus.core.metadata.TableInfoHelper : 342 ] - Can not find table primary key in Class: "java.lang.Object".
+2024-03-20 16:58:21.243 [ main ] - [ WARN  ] [ c.b.mybatisplus.core.injector.DefaultSqlInjector : 56 ] - class java.lang.Object ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2024-03-20 16:58:21.980 [ main ] - [ INFO  ] [ org.apache.coyote.http11.Http11NioProtocol : 173 ] - Starting ProtocolHandler ["http-nio-9100"]
+2024-03-20 16:58:21.999 [ main ] - [ INFO  ] [ com.gk.study.MySpringApplication : 61 ] - Started MySpringApplication in 2.535 seconds (JVM running for 3.168)
+2024-03-20 16:58:27.722 [ http-nio-9100-exec-1 ] - [ INFO  ] [ o.a.c.c.ContainerBase.[Tomcat].[localhost].[/api] : 173 ] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-20 18:07:42.942 [ http-nio-9100-exec-10 ] - [ INFO  ] [ com.gk.study.interceptor.AccessInterceptor : 74 ] - token==>f159053ec4a0e4a0e3c66cfd7c254853
+2024-03-20 20:20:21.744 [ SpringApplicationShutdownHook ] - [ INFO  ] [ com.alibaba.druid.pool.DruidDataSource : 2063 ] - {dataSource-1} closing ...
+2024-03-20 20:20:21.748 [ SpringApplicationShutdownHook ] - [ INFO  ] [ com.alibaba.druid.pool.DruidDataSource : 2136 ] - {dataSource-1} closed
+2024-03-20 20:20:28.565 [ main ] - [ INFO  ] [ com.gk.study.MySpringApplication : 55 ] - Starting MySpringApplication using Java 1.8.0_391 on LAPTOP-KMAEH3VR with PID 119196 (C:\Users\bc175\Desktop\测试\java_shop-master\server\target\classes started by bc175 in C:\Users\bc175\Desktop\测试\java_shop-master)
+2024-03-20 20:20:28.568 [ main ] - [ INFO  ] [ com.gk.study.MySpringApplication : 659 ] - No active profile set, falling back to default profiles: default
+2024-03-20 20:20:29.395 [ main ] - [ INFO  ] [ org.apache.coyote.http11.Http11NioProtocol : 173 ] - Initializing ProtocolHandler ["http-nio-9100"]
+2024-03-20 20:20:29.396 [ main ] - [ INFO  ] [ org.apache.catalina.core.StandardService : 173 ] - Starting service [Tomcat]
+2024-03-20 20:20:29.396 [ main ] - [ INFO  ] [ org.apache.catalina.core.StandardEngine : 173 ] - Starting Servlet engine: [Apache Tomcat/9.0.53]
+2024-03-20 20:20:29.397 [ main ] - [ INFO  ] [ org.apache.catalina.core.AprLifecycleListener : 173 ] - Loaded Apache Tomcat Native library [1.2.39] using APR version [1.7.4].
+2024-03-20 20:20:29.397 [ main ] - [ INFO  ] [ org.apache.catalina.core.AprLifecycleListener : 173 ] - APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true], UDS [true].
+2024-03-20 20:20:29.398 [ main ] - [ INFO  ] [ org.apache.catalina.core.AprLifecycleListener : 173 ] - APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2024-03-20 20:20:29.401 [ main ] - [ INFO  ] [ org.apache.catalina.core.AprLifecycleListener : 173 ] - OpenSSL successfully initialized [OpenSSL 3.0.11 19 Sep 2023]
+2024-03-20 20:20:29.487 [ main ] - [ INFO  ] [ o.a.c.c.ContainerBase.[Tomcat].[localhost].[/api] : 173 ] - Initializing Spring embedded WebApplicationContext
+2024-03-20 20:20:29.559 [ main ] - [ INFO  ] [ c.a.d.s.b.a.DruidDataSourceAutoConfigure : 56 ] - Init DruidDataSource
+2024-03-20 20:20:30.168 [ main ] - [ INFO  ] [ com.alibaba.druid.pool.DruidDataSource : 975 ] - {dataSource-1} inited
+2024-03-20 20:20:30.344 [ main ] - [ WARN  ] [ c.b.mybatisplus.core.metadata.TableInfoHelper : 342 ] - Can not find table primary key in Class: "java.lang.Object".
+2024-03-20 20:20:30.345 [ main ] - [ WARN  ] [ c.b.mybatisplus.core.injector.DefaultSqlInjector : 56 ] - class java.lang.Object ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2024-03-20 20:20:31.138 [ main ] - [ INFO  ] [ org.apache.coyote.http11.Http11NioProtocol : 173 ] - Starting ProtocolHandler ["http-nio-9100"]
+2024-03-20 20:20:31.158 [ main ] - [ INFO  ] [ com.gk.study.MySpringApplication : 61 ] - Started MySpringApplication in 2.933 seconds (JVM running for 3.745)
+2024-03-20 20:22:09.843 [ http-nio-9100-exec-2 ] - [ INFO  ] [ o.a.c.c.ContainerBase.[Tomcat].[localhost].[/api] : 173 ] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-20 20:23:34.744 [ SpringApplicationShutdownHook ] - [ INFO  ] [ com.alibaba.druid.pool.DruidDataSource : 2063 ] - {dataSource-1} closing ...
+2024-03-20 20:23:34.747 [ SpringApplicationShutdownHook ] - [ INFO  ] [ com.alibaba.druid.pool.DruidDataSource : 2136 ] - {dataSource-1} closed
+2024-03-20 20:23:40.051 [ main ] - [ INFO  ] [ com.gk.study.MySpringApplication : 55 ] - Starting MySpringApplication using Java 1.8.0_391 on LAPTOP-KMAEH3VR with PID 132828 (C:\Users\bc175\Desktop\测试\java_shop-master\server\target\classes started by bc175 in C:\Users\bc175\Desktop\测试\java_shop-master)
+2024-03-20 20:23:40.054 [ main ] - [ INFO  ] [ com.gk.study.MySpringApplication : 659 ] - No active profile set, falling back to default profiles: default
+2024-03-20 20:23:40.815 [ main ] - [ INFO  ] [ org.apache.coyote.http11.Http11NioProtocol : 173 ] - Initializing ProtocolHandler ["http-nio-9100"]
+2024-03-20 20:23:40.816 [ main ] - [ INFO  ] [ org.apache.catalina.core.StandardService : 173 ] - Starting service [Tomcat]
+2024-03-20 20:23:40.816 [ main ] - [ INFO  ] [ org.apache.catalina.core.StandardEngine : 173 ] - Starting Servlet engine: [Apache Tomcat/9.0.53]
+2024-03-20 20:23:40.817 [ main ] - [ INFO  ] [ org.apache.catalina.core.AprLifecycleListener : 173 ] - Loaded Apache Tomcat Native library [1.2.39] using APR version [1.7.4].
+2024-03-20 20:23:40.817 [ main ] - [ INFO  ] [ org.apache.catalina.core.AprLifecycleListener : 173 ] - APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true], UDS [true].
+2024-03-20 20:23:40.817 [ main ] - [ INFO  ] [ org.apache.catalina.core.AprLifecycleListener : 173 ] - APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2024-03-20 20:23:40.820 [ main ] - [ INFO  ] [ org.apache.catalina.core.AprLifecycleListener : 173 ] - OpenSSL successfully initialized [OpenSSL 3.0.11 19 Sep 2023]
+2024-03-20 20:23:40.897 [ main ] - [ INFO  ] [ o.a.c.c.ContainerBase.[Tomcat].[localhost].[/api] : 173 ] - Initializing Spring embedded WebApplicationContext
+2024-03-20 20:23:40.961 [ main ] - [ INFO  ] [ c.a.d.s.b.a.DruidDataSourceAutoConfigure : 56 ] - Init DruidDataSource
+2024-03-20 20:23:41.525 [ main ] - [ INFO  ] [ com.alibaba.druid.pool.DruidDataSource : 975 ] - {dataSource-1} inited
+2024-03-20 20:23:41.664 [ main ] - [ WARN  ] [ c.b.mybatisplus.core.metadata.TableInfoHelper : 342 ] - Can not find table primary key in Class: "java.lang.Object".
+2024-03-20 20:23:41.665 [ main ] - [ WARN  ] [ c.b.mybatisplus.core.injector.DefaultSqlInjector : 56 ] - class java.lang.Object ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2024-03-20 20:23:42.388 [ main ] - [ INFO  ] [ org.apache.coyote.http11.Http11NioProtocol : 173 ] - Starting ProtocolHandler ["http-nio-9100"]
+2024-03-20 20:23:42.408 [ main ] - [ INFO  ] [ com.gk.study.MySpringApplication : 61 ] - Started MySpringApplication in 2.638 seconds (JVM running for 3.27)
+2024-03-20 20:24:15.164 [ http-nio-9100-exec-2 ] - [ INFO  ] [ o.a.c.c.ContainerBase.[Tomcat].[localhost].[/api] : 173 ] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-20 20:30:28.253 [ SpringApplicationShutdownHook ] - [ INFO  ] [ com.alibaba.druid.pool.DruidDataSource : 2063 ] - {dataSource-1} closing ...
+2024-03-20 20:30:28.256 [ SpringApplicationShutdownHook ] - [ INFO  ] [ com.alibaba.druid.pool.DruidDataSource : 2136 ] - {dataSource-1} closed
+2024-03-20 20:30:30.307 [ main ] - [ INFO  ] [ com.gk.study.MySpringApplication : 55 ] - Starting MySpringApplication using Java 1.8.0_391 on LAPTOP-KMAEH3VR with PID 56596 (C:\Users\bc175\Desktop\测试\java_shop-master\server\target\classes started by bc175 in C:\Users\bc175\Desktop\测试\java_shop-master)
+2024-03-20 20:30:30.310 [ main ] - [ INFO  ] [ com.gk.study.MySpringApplication : 659 ] - No active profile set, falling back to default profiles: default
+2024-03-20 20:30:31.051 [ main ] - [ INFO  ] [ org.apache.coyote.http11.Http11NioProtocol : 173 ] - Initializing ProtocolHandler ["http-nio-9100"]
+2024-03-20 20:30:31.051 [ main ] - [ INFO  ] [ org.apache.catalina.core.StandardService : 173 ] - Starting service [Tomcat]
+2024-03-20 20:30:31.051 [ main ] - [ INFO  ] [ org.apache.catalina.core.StandardEngine : 173 ] - Starting Servlet engine: [Apache Tomcat/9.0.53]
+2024-03-20 20:30:31.052 [ main ] - [ INFO  ] [ org.apache.catalina.core.AprLifecycleListener : 173 ] - Loaded Apache Tomcat Native library [1.2.39] using APR version [1.7.4].
+2024-03-20 20:30:31.052 [ main ] - [ INFO  ] [ org.apache.catalina.core.AprLifecycleListener : 173 ] - APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true], UDS [true].
+2024-03-20 20:30:31.053 [ main ] - [ INFO  ] [ org.apache.catalina.core.AprLifecycleListener : 173 ] - APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2024-03-20 20:30:31.056 [ main ] - [ INFO  ] [ org.apache.catalina.core.AprLifecycleListener : 173 ] - OpenSSL successfully initialized [OpenSSL 3.0.11 19 Sep 2023]
+2024-03-20 20:30:31.132 [ main ] - [ INFO  ] [ o.a.c.c.ContainerBase.[Tomcat].[localhost].[/api] : 173 ] - Initializing Spring embedded WebApplicationContext
+2024-03-20 20:30:31.196 [ main ] - [ INFO  ] [ c.a.d.s.b.a.DruidDataSourceAutoConfigure : 56 ] - Init DruidDataSource
+2024-03-20 20:30:31.757 [ main ] - [ INFO  ] [ com.alibaba.druid.pool.DruidDataSource : 975 ] - {dataSource-1} inited
+2024-03-20 20:30:31.895 [ main ] - [ WARN  ] [ c.b.mybatisplus.core.metadata.TableInfoHelper : 342 ] - Can not find table primary key in Class: "java.lang.Object".
+2024-03-20 20:30:31.895 [ main ] - [ WARN  ] [ c.b.mybatisplus.core.injector.DefaultSqlInjector : 56 ] - class java.lang.Object ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2024-03-20 20:30:32.622 [ main ] - [ INFO  ] [ org.apache.coyote.http11.Http11NioProtocol : 173 ] - Starting ProtocolHandler ["http-nio-9100"]
+2024-03-20 20:30:32.642 [ main ] - [ INFO  ] [ com.gk.study.MySpringApplication : 61 ] - Started MySpringApplication in 2.626 seconds (JVM running for 3.248)
+2024-03-20 20:30:46.094 [ http-nio-9100-exec-1 ] - [ INFO  ] [ o.a.c.c.ContainerBase.[Tomcat].[localhost].[/api] : 173 ] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-20 20:31:46.726 [ SpringApplicationShutdownHook ] - [ INFO  ] [ com.alibaba.druid.pool.DruidDataSource : 2063 ] - {dataSource-1} closing ...
+2024-03-20 20:31:46.730 [ SpringApplicationShutdownHook ] - [ INFO  ] [ com.alibaba.druid.pool.DruidDataSource : 2136 ] - {dataSource-1} closed
+2024-03-20 20:31:48.801 [ main ] - [ INFO  ] [ com.gk.study.MySpringApplication : 55 ] - Starting MySpringApplication using Java 1.8.0_391 on LAPTOP-KMAEH3VR with PID 130296 (C:\Users\bc175\Desktop\测试\java_shop-master\server\target\classes started by bc175 in C:\Users\bc175\Desktop\测试\java_shop-master)
+2024-03-20 20:31:48.803 [ main ] - [ INFO  ] [ com.gk.study.MySpringApplication : 659 ] - No active profile set, falling back to default profiles: default
+2024-03-20 20:31:49.544 [ main ] - [ INFO  ] [ org.apache.coyote.http11.Http11NioProtocol : 173 ] - Initializing ProtocolHandler ["http-nio-9100"]
+2024-03-20 20:31:49.545 [ main ] - [ INFO  ] [ org.apache.catalina.core.StandardService : 173 ] - Starting service [Tomcat]
+2024-03-20 20:31:49.545 [ main ] - [ INFO  ] [ org.apache.catalina.core.StandardEngine : 173 ] - Starting Servlet engine: [Apache Tomcat/9.0.53]
+2024-03-20 20:31:49.546 [ main ] - [ INFO  ] [ org.apache.catalina.core.AprLifecycleListener : 173 ] - Loaded Apache Tomcat Native library [1.2.39] using APR version [1.7.4].
+2024-03-20 20:31:49.546 [ main ] - [ INFO  ] [ org.apache.catalina.core.AprLifecycleListener : 173 ] - APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true], UDS [true].
+2024-03-20 20:31:49.546 [ main ] - [ INFO  ] [ org.apache.catalina.core.AprLifecycleListener : 173 ] - APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2024-03-20 20:31:49.549 [ main ] - [ INFO  ] [ org.apache.catalina.core.AprLifecycleListener : 173 ] - OpenSSL successfully initialized [OpenSSL 3.0.11 19 Sep 2023]
+2024-03-20 20:31:49.627 [ main ] - [ INFO  ] [ o.a.c.c.ContainerBase.[Tomcat].[localhost].[/api] : 173 ] - Initializing Spring embedded WebApplicationContext
+2024-03-20 20:31:49.702 [ main ] - [ INFO  ] [ c.a.d.s.b.a.DruidDataSourceAutoConfigure : 56 ] - Init DruidDataSource
+2024-03-20 20:31:50.275 [ main ] - [ INFO  ] [ com.alibaba.druid.pool.DruidDataSource : 975 ] - {dataSource-1} inited
+2024-03-20 20:31:50.417 [ main ] - [ WARN  ] [ c.b.mybatisplus.core.metadata.TableInfoHelper : 342 ] - Can not find table primary key in Class: "java.lang.Object".
+2024-03-20 20:31:50.418 [ main ] - [ WARN  ] [ c.b.mybatisplus.core.injector.DefaultSqlInjector : 56 ] - class java.lang.Object ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2024-03-20 20:31:51.147 [ main ] - [ INFO  ] [ org.apache.coyote.http11.Http11NioProtocol : 173 ] - Starting ProtocolHandler ["http-nio-9100"]
+2024-03-20 20:31:51.173 [ main ] - [ INFO  ] [ com.gk.study.MySpringApplication : 61 ] - Started MySpringApplication in 2.669 seconds (JVM running for 3.272)
+2024-03-20 20:31:58.084 [ http-nio-9100-exec-1 ] - [ INFO  ] [ o.a.c.c.ContainerBase.[Tomcat].[localhost].[/api] : 173 ] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-20 20:32:52.046 [ SpringApplicationShutdownHook ] - [ INFO  ] [ com.alibaba.druid.pool.DruidDataSource : 2063 ] - {dataSource-1} closing ...
+2024-03-20 20:32:52.048 [ SpringApplicationShutdownHook ] - [ INFO  ] [ com.alibaba.druid.pool.DruidDataSource : 2136 ] - {dataSource-1} closed
