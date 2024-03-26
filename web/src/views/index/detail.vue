@@ -91,6 +91,7 @@
               <div class="title">发表新的评论</div>
               <div class="publish flex-view">
                 <img :src="AvatarIcon" class="mine-img" />
+<!--                <img :src="" class="mine-img" />-->
                 <input placeholder="说点什么..." class="content-input" ref="commentRef" />
                 <button class="send-btn" @click="sendComment()">发送</button>
               </div>

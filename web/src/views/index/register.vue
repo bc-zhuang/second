@@ -8,9 +8,9 @@
 
       <div class="regist-padding">
         <div class="common-input">
-          <img :src="MailIcon" class="left-icon" />
+          <img :src="UserIcon" class="left-icon" />
           <div class="input-view">
-            <input placeholder="请输入邮箱" v-model="tData.loginForm.username" type="text" class="input" />
+            <input placeholder="请输入账号" v-model="tData.loginForm.username" type="text" class="input" />
             <p class="err-view"> </p>
           </div>
         </div>
@@ -47,6 +47,7 @@
   import { message } from 'ant-design-vue';
   import MailIcon from '/@/assets/images/mail-icon.svg';
   import PwdIcon from '/@/assets/images/pwd-icon.svg';
+  import UserIcon from '/@/assets/images/user-icon.svg';
 
   const router = useRouter();
 

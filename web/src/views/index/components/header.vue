@@ -27,10 +27,6 @@
             </a-menu>
           </template>
         </a-dropdown>
-        <!--        <div class="right-icon">-->
-        <!--          <img src="@/assets/cart-icon.svg">-->
-        <!--          <span>3</span>-->
-        <!--        </div>-->
       </template>
       <template v-else>
         <button class="login btn hidden-sm" @click="goLogin()">登录</button>
@@ -113,6 +109,8 @@
         tData.form = res.data;
         if (tData.form.avatar) {
           tData.form.avatar = BASE_URL + '/api/staticfiles/avatar/' + tData.form.avatar;
+        } else {
+          tData.form.avatar = AvatarIcon;
         }
         loading.value = false;
       })

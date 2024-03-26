@@ -50,6 +50,17 @@ public class UserController {
         return new APIResponse(ResponeCode.SUCCESS, "查询成功", user);
     }
 
+    // 根据用户账号邮箱查找用户信息
+    @RequestMapping(value = "/detailByUsernameAndEmail", method = RequestMethod.GET)
+    @Transactional
+    public APIResponse detailByUsernameAndEmail(String username, String email){
+        User user = userService.getUserDetailByUsernameAndEmail(username, email);
+        if (user != null){
+            return new APIResponse(ResponeCode.SUCCESS, "查询成功", user);
+        }
+        return new APIResponse(ResponeCode.FAIL, "账号或邮箱错误，请重试");
+    }
+
     // 后台用户登录
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public APIResponse login(User user){
@@ -106,6 +117,7 @@ public class UserController {
             // 设置状态
             user.setStatus("0");
             user.setCreateTime(String.valueOf(System.currentTimeMillis()));
+
 
             userService.createUser(user);
             return new APIResponse(ResponeCode.SUCCESS, "创建成功");
@@ -190,7 +202,7 @@ public class UserController {
         }
     }
 
-    @Access(level = AccessLevel.LOGIN)
+//    @Access(level = AccessLevel.LOGIN)
     @RequestMapping(value = "/updatePwd", method = RequestMethod.POST)
     @Transactional
     public APIResponse updatePwd(String userId, String password, String newPassword) throws IOException {

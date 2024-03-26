@@ -134,4 +134,16 @@ public class OrderController {
         }
     }
 
+    // 根据订单id找到订单并把订单状态改为已收货，即status=5
+    @Access(level = AccessLevel.LOGIN)
+    @RequestMapping(value = "/updateUserOrderStatus5", method = RequestMethod.POST)
+    @Transactional
+    public APIResponse updateUserOrderStatus5(Long id) throws IOException {
+        Order order = new Order();
+        order.setId(id);
+        order.setStatus("5"); // 5=已收货
+        service.updateOrder(order);
+        return new APIResponse(ResponeCode.SUCCESS, "收货成功");
+    }
+
 }

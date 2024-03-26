@@ -1,5 +1,5 @@
 import { get, post } from '/@/utils/http/axios';
-import {Ref} from "vue";
+import { Ref } from 'vue';
 
 enum URL {
   list = '/api/order/list',
@@ -13,6 +13,7 @@ enum URL {
   userOrderListBySellerId = '/api/order/userOrderListBySellerId',
   updateOrderExpressAndStatus = '/api/order/updateOrderExpressAndStatus',
   updateOrderPayStatus = '/api/order/updateOrderPayStatus',
+  updateUserOrderStatus5 = '/api/order/updateUserOrderStatus5',
 }
 
 const listApi = async (params: any) => get<any>({ url: URL.list, params: params, data: {}, headers: {} });
@@ -53,6 +54,12 @@ const updateOrderPayStatusApi = async (data: any) =>
     data: data,
     headers: { 'Content-Type': 'multipart/form-data;charset=utf-8' },
   });
+const updateUserOrderStatus5Api = async (data: any) =>
+  post<any>({
+    url: URL.updateUserOrderStatus5,
+    data: data,
+    headers: { 'Content-Type': 'multipart/form-data;charset=utf-8' },
+  });
 
 export {
   listApi,
@@ -65,4 +72,5 @@ export {
   userOrderListBySellerIdApi,
   updateOrderExpressAndStatusApi,
   updateOrderPayStatusApi,
+  updateUserOrderStatus5Api,
 };

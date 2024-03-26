@@ -10,7 +10,7 @@
     </a-tabs>
     <div v-if="activeKey !== '4'">
       <div class="list-content">
-        <div class="order-item-view" v-for="(item, index) in orderData" :key="index">
+        <div class="order-item-view" v-for="(item, index) in pagedOrders" :key="index">
           <div class="header flex-view">
             <div class="left">
               <span class="text">订单号</span>
@@ -22,8 +22,30 @@
               <a-popconfirm v-if="item.status === '1'" title="确定取消订单？" ok-text="是" cancel-text="否" @confirm="handleCancel(item)">
                 <a-button type="primary" size="small" style="margin-right: 24px">取消</a-button>
               </a-popconfirm>
+              <a-popconfirm
+                v-if="item.status === '3' || item.status === '4'"
+                title="是否确认收货？"
+                ok-text="是"
+                cancel-text="否"
+                @confirm="handleCancel(item)"
+              >
+                <a-button type="primary" size="small" style="margin-right: 24px">收货</a-button>
+              </a-popconfirm>
               <span class="text">订单状态</span>
-              <span class="state">{{ item.status === '1' ? '待支付' : item.status === '2' ? '已支付' : '已取消' }}</span>
+              <!--              <span class="state">{{ item.status === '1' ? '待支付' : item.status === '2' ? '已支付' : '已取消' }}</span>-->
+              <span class="state">{{
+                item.status === '1'
+                  ? '待支付'
+                  : item.status === '2'
+                  ? '已支付,等待商家发货'
+                  : item.status === '3'
+                  ? '已发货'
+                  : item.status === '4'
+                  ? '待收货'
+                  : item.status === '5'
+                  ? '已收货'
+                  : '已取消'
+              }}</span>
             </div>
           </div>
           <div class="content flex-view">
@@ -68,10 +90,26 @@
           </div>
         </div>
       </div>
+
+      <div style="height: 20px"></div>
+      <!-- 这里插入一个空的 div 并设置高度为 20 像素，即产生一个空行的效果 -->
+
+      <div class="parent-container">
+        <div class="pagination">
+          <a @click="prevPage" v-if="currentPage > 1">上一页&nbsp;</a>
+          <!--          <span>第 {{ currentPage }} 页 / 总共 {{ totalPages }} 页</span>-->
+          <span>
+            跳转至第 <input type="number" v-model="selectedPage" @keyup.enter="goToPage" style="width: 35px; height: 20px" /> 页 / 总共
+            {{ totalPages }} 页
+          </span>
+          <a @click="nextPage" v-if="currentPage < totalPages">&nbsp;下一页</a>
+        </div>
+      </div>
     </div>
+
     <div v-else>
       <div class="list-content">
-        <div class="order-item-view" v-for="(item, index) in orderData" :key="index">
+        <div class="order-item-view" v-for="(item, index) in pagedOrders" :key="index">
           <div class="header flex-view">
             <div class="left">
               <span class="text">订单号</span>
@@ -87,7 +125,7 @@
                 <a-button type="primary" size="small" style="margin-right: 24px">发货</a-button>
                 <template #icon>
                   <span class="title">快递单号</span>
-<!--                  <a-input v-model="expressNumber" placeholder="请输入快递单号" />-->
+                  <!--                  <a-input v-model="expressNumber" placeholder="请输入快递单号" />-->
                   <a-input v-model:value="expressNumber" @update:model-value="updateExpressNumber" placeholder="请输入快递单号" />
                 </template>
               </a-popconfirm>
@@ -96,9 +134,9 @@
                 item.status === '1'
                   ? '待支付'
                   : item.status === '2'
-                  ? '已支付'
+                  ? '已支付，等待商家发货'
                   : item.status === '3'
-                  ? '已发货'
+                  ? '已发货，等待用户收货'
                   : item.status === '4'
                   ? '待收货'
                   : item.status === '5'
@@ -150,6 +188,21 @@
           </div>
         </div>
       </div>
+
+      <div style="height: 20px"></div>
+      <!-- 这里插入一个空的 div 并设置高度为 20 像素，即产生一个空行的效果 -->
+
+      <div class="parent-container">
+        <div class="pagination">
+          <a @click="prevPage" v-if="currentPage > 1">上一页&nbsp;</a>
+          <!--          <span>第 {{ currentPage }} 页 / 总共 {{ totalPages }} 页</span>-->
+          <span>
+            跳转至第 <input type="number" v-model="selectedPage" @keyup.enter="goToPage" style="width: 35px; height: 20px" /> 页 / 总共
+            {{ totalPages }} 页
+          </span>
+          <a @click="nextPage" v-if="currentPage < totalPages">&nbsp;下一页</a>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -157,10 +210,11 @@
 <script setup>
   import { message } from 'ant-design-vue';
   import { getFormatTime } from '/@/utils/';
-  import { updateOrderExpressAndStatusApi, userOrderListApi, userOrderListBySellerIdApi } from '/@/api/order';
+  import { updateOrderExpressAndStatusApi, updateUserOrderStatus5Api, userOrderListApi, userOrderListBySellerIdApi } from '/@/api/order';
   import { cancelUserOrderApi } from '/@/api/order';
   import { BASE_URL } from '/@/store/constants';
   import { useUserStore } from '/@/store';
+  import { ref } from 'vue';
 
   const router = useRouter();
   const route = useRoute();
@@ -173,9 +227,43 @@
   const activeKey = ref('1');
   const expressNumber = ref('');
 
+  const selectedPage = ref(1); // 用户选择的要跳转的页数
+
   onMounted(() => {
     getOrderList();
   });
+
+  const goToPage = () => {
+    if (selectedPage.value >= 1 && selectedPage.value <= totalPages.value) {
+      currentPage.value = selectedPage.value;
+      // 这里可以根据需要进行其他操作，比如加载对应页的数据等
+    } else {
+      // 处理用户输入不合法的页数情况
+      alert('请输入有效的页数！');
+    }
+  };
+
+  const currentPage = ref(1);
+  const pageSize = 4;
+
+  const pagedOrders = computed(() => {
+    const startIndex = (currentPage.value - 1) * pageSize;
+    return orderData.value.slice(startIndex, startIndex + pageSize);
+  });
+
+  const totalPages = computed(() => Math.ceil(orderData.value.length / pageSize));
+
+  const prevPage = () => {
+    if (currentPage.value > 1) {
+      currentPage.value--;
+    }
+  };
+
+  const nextPage = () => {
+    if (currentPage.value < totalPages.value) {
+      currentPage.value++;
+    }
+  };
 
   const onTabChange = (key) => {
     console.log(key);
@@ -239,39 +327,54 @@
     window.open(text.href, '_blank');
   };
   const handleCancel = (item) => {
-    cancelUserOrderApi({
-      id: item.id,
-    })
-      .then((res) => {
-        message.success('取消成功');
-        getOrderList();
+    if (item.status === '1') {
+      cancelUserOrderApi({
+        id: item.id,
       })
-      .catch((err) => {
-        message.error(err.msg || '取消失败');
-      });
-  };
-
-  const sendThing = (item) => {
-    // 将 expressNumber.value 中的快递单号写入数据库的逻辑
-    // 这里可以调用接口或方法将数据保存到数据库
-    console.log('输入的快递单号为:', expressNumber.value);
-    updateOrderExpressAndStatusApi({
-      id: item.id,
-      express: expressNumber.value,
-    })
-      .then((res) => {
-        message.success('发货成功');
-        getOrderList();
+        .then((res) => {
+          message.success('取消成功');
+          getOrderList();
+        })
+        .catch((err) => {
+          message.error(err.msg || '取消失败');
+        });
+    } else if (item.status === '3' || item.status === '4') {
+      updateUserOrderStatus5Api({
+        id: item.id,
       })
-      .catch((err) => {
-        message.error(err.msg || '发货失败');
-      });
-    // 清空输入框
-    expressNumber.value = '';
-  };
+        .then((res) => {
+          message.success('确认收货成功');
+          getOrderList();
+        })
+        .catch((err) => {
+          message.error(err.msg || '确认收货失败');
+        });
+    } else {
+      message.error('操作失败');
+    }
 
-  const updateExpressNumber = (value) => {
-    expressNumber.value = value; // 更新数据
+    const sendThing = (item) => {
+      // 将 expressNumber.value 中的快递单号写入数据库的逻辑
+      // 这里可以调用接口或方法将数据保存到数据库
+      console.log('输入的快递单号为:', expressNumber.value);
+      updateOrderExpressAndStatusApi({
+        id: item.id,
+        express: expressNumber.value,
+      })
+        .then((res) => {
+          message.success('发货成功');
+          getOrderList();
+        })
+        .catch((err) => {
+          message.error(err.msg || '发货失败');
+        });
+      // 清空输入框
+      expressNumber.value = '';
+    };
+
+    const updateExpressNumber = (value) => {
+      expressNumber.value = value; // 更新数据
+    };
   };
 </script>
 <style scoped lang="less">
@@ -497,6 +600,10 @@
         font-size: 18px;
         color: #ff7b31;
         margin-left: 8px;
+      }
+
+      .parent-container {
+        text-align: right;
       }
     }
   }

@@ -6,19 +6,18 @@ import { USER_ID, USER_NAME, USER_TOKEN, ADMIN_USER_ID, ADMIN_USER_NAME, ADMIN_U
 
 export const useUserStore = defineStore('user', {
   state: (): {
-    user_avatar: undefined;
     admin_user_name: undefined;
     admin_user_id: undefined;
     user_id: undefined;
     user_name: undefined;
+    user_status: undefined;
     user_token: undefined;
     admin_user_token: undefined;
   } => ({
     user_id: undefined,
     user_name: undefined,
     user_token: undefined,
-    user_avatar: undefined,
-
+    user_status: undefined,
     admin_user_id: undefined,
     admin_user_name: undefined,
     admin_user_token: undefined,
@@ -35,7 +34,7 @@ export const useUserStore = defineStore('user', {
           state.user_id = result.data.id;
           state.user_name = result.data.username;
           state.user_token = result.data.token;
-          state.user_avatar = result.data.avatar;
+          state.user_status = result.data.status;
           console.log('state==>', state);
         });
 

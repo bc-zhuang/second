@@ -25,6 +25,17 @@
                 <a-icon slot="prefix" type="lock" />
               </a-input>
             </a-form-item>
+            <a-form-item name="username" label="验证码" :colon="false">
+              <a-input size="large" placeholder="请输入验证码" v-model:value="sidentifyMode" @pressEnter="handleSubmit">
+                <a-icon slot="prefix" type="user" />
+              </a-input>
+            </a-form-item>
+            <a-form-item>
+              <!-- 使用验证码组件 -->
+              <div class="code" @click="refreshCode">
+                <SIdentify :identifyCode="identifyCode" />
+              </div>
+            </a-form-item>
             <a-form-item style="padding-top: 24px">
               <a-button class="login-button" type="primary" :loading="loginBtn" size="large" block @click="handleSubmit"> 登录 </a-button>
             </a-form-item>
@@ -44,7 +55,10 @@
 <script setup lang="ts">
   import { useUserStore } from '/@/store';
   import logoImage from '/@/assets/images/k-logo.png';
-
+  import SIdentify from '/@/views/index/components/Sidentify.vue';
+  let sidentifyMode = ref(''); //输入框验证码
+  let identifyCode = ref(''); //图形验证码
+  let identifyCodes = ref('1234567890abcdefjhijklinopqrsduvwxyz'); //验证码出现的数字和字母
   const router = useRouter();
   const userStore = useUserStore();
 
@@ -65,6 +79,28 @@
     },
   });
 
+  onMounted(() => {
+    identifyCode.value = '';
+    makeCode(identifyCodes.value, 4);
+  });
+
+  // 生成随机数
+  const randomNum = (min, max) => {
+    max = max + 1;
+    return Math.floor(Math.random() * (max - min) + min);
+  };
+  // 随机生成验证码字符串
+  const makeCode = (o, l) => {
+    for (let i = 0; i < l; i++) {
+      identifyCode.value += o[randomNum(0, o.length)];
+    }
+  };
+  // 更新验证码
+  const refreshCode = () => {
+    identifyCode.value = '';
+    makeCode(identifyCodes.value, 4);
+  };
+
   const handleSubmit = () => {
     myform.value
       ?.validate()
@@ -77,17 +113,42 @@
   };
 
   const handleLogin = () => {
-    userStore
-      .adminLogin({
-        username: data.loginForm.username,
-        password: data.loginForm.password,
-      })
-      .then((res) => {
-        loginSuccess();
-      })
-      .catch((err) => {
-        message.warn(err.msg || '登录失败');
-      });
+    //验证验证码不为空
+    if (!sidentifyMode.value) {
+      message.error('验证码不能为空');
+      console.log('验证码为空');
+      return;
+    }
+    //验证验证码是否正确
+    if (sidentifyMode.value != identifyCode.value) {
+      message.error('验证码错误');
+      console.log('验证码错误，输入为：' + identifyCode.value);
+      refreshCode();
+      return;
+    } else {
+      userStore
+        .adminLogin({
+          username: data.loginForm.username,
+          password: data.loginForm.password,
+        })
+        .then((res) => {
+          loginSuccess();
+        })
+        .catch((err) => {
+          message.warn(err.msg || '登录失败');
+        });
+    }
+    // userStore
+    //   .adminLogin({
+    //     username: data.loginForm.username,
+    //     password: data.loginForm.password,
+    //   })
+    //   .then((res) => {
+    //     loginSuccess();
+    //   })
+    //   .catch((err) => {
+    //     message.warn(err.msg || '登录失败');
+    //   });
   };
 
   const loginSuccess = () => {

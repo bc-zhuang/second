@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static com.gk.study.utils.RandomUtils.generateRandomString;
+
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
 
@@ -48,7 +50,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public void createUser(User user) {
-        userMapper.insert(user);
+        String fixedString = "用户";
+        String randomString = generateRandomString(4); // 生成长度为4的随机字母/数字串
+        String result = fixedString + randomString;
+        User user1 = getUserDetailByNickName(result);
+        if (user1 == null){
+            user.setNickname(result);
+            userMapper.insert(user);
+        }
     }
 
     @Override
@@ -77,8 +86,23 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public User getUserDetail(String userId) {
-        QueryWrapper<User> queryWrapper = new QueryWrapper();
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("id", userId);
+        return userMapper.selectOne(queryWrapper);
+    }
+
+    @Override
+    public User getUserDetailByUsernameAndEmail(String username, String email) {
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("username", username);
+        queryWrapper.eq("email", email);
+        return userMapper.selectOne(queryWrapper);
+    }
+
+    @Override
+    public User getUserDetailByNickName(String nickname){
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("nickname", nickname);
         return userMapper.selectOne(queryWrapper);
     }
 }

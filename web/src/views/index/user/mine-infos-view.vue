@@ -94,6 +94,7 @@
   import { useUserStore } from '/@/store';
   import { BASE_URL } from '/@/store/constants';
   import { detailApi } from '/@/api/user';
+  import AvatarIcon from "/@/assets/images/avatar.jpg";
   const userStore = useUserStore();
   const router = useRouter();
 
@@ -126,6 +127,8 @@
         tData.form = res.data;
         if (tData.form.avatar) {
           tData.form.avatar = BASE_URL + '/api/staticfiles/avatar/' + tData.form.avatar;
+        } else {
+          tData.form.avatar = AvatarIcon;
         }
         loading.value = false;
       })

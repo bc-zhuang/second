@@ -18,4 +18,8 @@ public interface UserService {
     User getUserByUserName(String username);
 
     User getUserDetail(String userId);
+
+    User getUserDetailByUsernameAndEmail(String username, String email);
+
+    User getUserDetailByNickName(String nickname);
 }

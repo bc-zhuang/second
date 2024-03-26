@@ -1,18 +1,18 @@
 <template>
   <div class="container">
     <div class="login-page pc-style">
-      <img :src="LogoIcon" alt="logo" class="logo-icon" />
+      <img :src="Logo1" alt="logo" class="logo-icon" />
       <div class="login-tab">
         <div class="tab-selected">
-          <span>邮箱登录</span>
+          <span>欢迎登录</span>
           <span class="tabline tabline-width"></span>
         </div>
       </div>
       <div class="mail-login" type="login">
         <div class="common-input">
-          <img :src="MailIcon" class="left-icon" />
+          <img :src="UserIcon" class="left-icon" />
           <div class="input-view">
-            <input placeholder="请输入注册邮箱" v-model="pageData.loginForm.username" type="text" class="input" />
+            <input placeholder="请输入账号" v-model="pageData.loginForm.username" type="text" class="input" />
             <p class="err-view"> </p>
           </div>
           <!---->
@@ -23,8 +23,14 @@
             <input placeholder="请输入密码" v-model="pageData.loginForm.password" type="password" class="input" />
             <p class="err-view"> </p>
           </div>
-          <!--          <img src="@/assets/pwd-hidden.svg" class="right-icon">-->
-          <!---->
+        </div>
+        <div class="common-input">
+          <img :src="Yanzheng" class="left-icon" />
+          <input placeholder="请输入验证码" v-model="sidentifyMode" type="text" class="input" />
+          <!-- 使用验证码组件 -->
+          <div class="code" @click="refreshCode">
+            <SIdentify :identifyCode="identifyCode" />
+          </div>
         </div>
         <div class="next-btn-view">
           <button class="next-btn btn-active" style="margin: 16px 0" @click="handleLogin">登录</button>
@@ -32,7 +38,7 @@
       </div>
       <div class="operation">
         <a @click="handleCreateUser" class="forget-pwd" style="text-align: left">注册新帐号</a>
-        <a class="forget-pwd" style="text-align: right">忘记密码？</a>
+        <a class="forget-pwd" style="text-align: right" @click="forgetPassword">忘记密码</a>
       </div>
     </div>
   </div>
@@ -42,8 +48,16 @@
   import { useUserStore } from '/@/store';
   import { message } from 'ant-design-vue';
   import LogoIcon from '/@/assets/images/k-logo.png';
-  import MailIcon from '/@/assets/images/mail-icon.svg';
+  import Logo12 from '/@/assets/images/logo12.png';
+  import Logo1 from '/@/assets/images/logo1.png';
   import PwdIcon from '/@/assets/images/pwd-icon.svg';
+  import Yanzheng from '/@/assets/images/yanzheng.svg';
+  import UserIcon from '/@/assets/images/user-icon.svg';
+
+  import SIdentify from '/@/views/index/components/Sidentify.vue';
+  let sidentifyMode = ref(''); //输入框验证码
+  let identifyCode = ref(''); //图形验证码
+  let identifyCodes = ref('1234567890abcdefjhijklinopqrsduvwxyz'); //验证码出现的数字和字母
 
   const router = useRouter();
   const userStore = useUserStore();
@@ -55,26 +69,70 @@
     },
   });
 
+  onMounted(() => {
+    identifyCode.value = '';
+    makeCode(identifyCodes.value, 4);
+  });
+
+  // 生成随机数
+  const randomNum = (min, max) => {
+    max = max + 1;
+    return Math.floor(Math.random() * (max - min) + min);
+  };
+  // 随机生成验证码字符串
+  const makeCode = (o, l) => {
+    for (let i = 0; i < l; i++) {
+      identifyCode.value += o[randomNum(0, o.length)];
+    }
+  };
+  // 更新验证码
+  const refreshCode = () => {
+    identifyCode.value = '';
+    makeCode(identifyCodes.value, 4);
+  };
+
   const handleLogin = () => {
-    userStore
-      .login({
-        username: pageData.loginForm.username,
-        password: pageData.loginForm.password,
-      })
-      .then((res) => {
-        loginSuccess();
-        console.log('success==>', userStore.user_name);
-        console.log('success==>', userStore.user_id);
-        console.log('success==>', userStore.user_token);
-        console.log('success==>', userStore.user_avatar);
-      })
-      .catch((err) => {
-        message.warn(err.msg || '登录失败');
-      });
+    //验证验证码不为空
+    if (!sidentifyMode.value) {
+      message.error('验证码不能为空');
+      console.log('验证码为空');
+      return;
+    }
+    //验证验证码是否正确
+    if (sidentifyMode.value != identifyCode.value) {
+      message.error('验证码错误');
+      console.log('验证码错误，输入为：' + identifyCode.value);
+      refreshCode();
+      return;
+    } else {
+      userStore
+        .login({
+          username: pageData.loginForm.username,
+          password: pageData.loginForm.password,
+        })
+        .then((res) => {
+          if (userStore.user_status == '0') {
+            loginSuccess();
+            console.log('success==>', userStore.user_name);
+            console.log('success==>', userStore.user_id);
+            console.log('success==>', userStore.user_token);
+            console.log('账号状态' + userStore.user_status);
+          } else {
+            console.log('账号状态' + userStore.user_status);
+            message.warn('账号被封禁，请联系管理员');
+          }
+        })
+        .catch((err) => {
+          message.warn(err.msg || '登录失败');
+        });
+    }
   };
 
   const handleCreateUser = () => {
     router.push({ name: 'register' });
+  };
+  const forgetPassword = () => {
+    router.push({ name: 'forgetPassword' });
   };
 
   const loginSuccess = () => {
@@ -119,9 +177,12 @@
 
     .logo-icon {
       margin-top: 20px;
-      margin-left: 175px;
-      width: 48px;
-      height: 48px;
+      //margin-left: 175px;
+      //width: 48px;
+      //height: 48px;
+      width: 200px;
+      height: 65px;
+      margin-left: 100px;
     }
   }
 
