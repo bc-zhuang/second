@@ -1,9 +1,12 @@
 <template>
   <div class="container">
     <div class="tel-regist-page pc-style">
-      <div class="regist-title">
-        <span>注册新账号</span>
-        <span @click="router.push({ name: 'login' })" class="toWxLogin">我要登录</span>
+      <img :src="Logo1" alt="logo" class="logo-icon" />
+      <div class="login-tab">
+        <div class="tab-selected">
+          <span>注册新账号</span>
+          <span class="tabline tabline-width"></span>
+        </div>
       </div>
 
       <div class="regist-padding">
@@ -36,6 +39,8 @@
       <div class="tel-login">
         <div class="next-btn-view">
           <button class="next-btn" @click="handleRegister">注册</button>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <button class="next-btn" @click="back">返回</button>
         </div>
       </div>
     </div>
@@ -45,9 +50,9 @@
 <script setup lang="ts">
   import { userRegisterApi } from '/@/api/user';
   import { message } from 'ant-design-vue';
-  import MailIcon from '/@/assets/images/mail-icon.svg';
   import PwdIcon from '/@/assets/images/pwd-icon.svg';
   import UserIcon from '/@/assets/images/user-icon.svg';
+  import Logo1 from '/@/assets/images/logo1.png';
 
   const router = useRouter();
 
@@ -78,6 +83,9 @@
       .catch((err) => {
         message.error(err.msg || '注册失败');
       });
+  };
+  const back = () => {
+    router.push({ name: 'login' });
   };
 </script>
 
@@ -144,7 +152,7 @@
 
     .regist-padding {
       padding: 0 28px;
-      margin-bottom: 8px;
+      margin-bottom: 5px;
     }
   }
 
@@ -205,5 +213,55 @@
     width: 100%;
     outline: none;
     cursor: pointer;
+  }
+
+  .logo-icon {
+    margin-top: 20px;
+    //margin-left: 175px;
+    //width: 48px;
+    //height: 48px;
+    width: 200px;
+    height: 65px;
+    margin-left: 100px;
+  }
+  .login-tab {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    color: #1e1e1e;
+    font-size: 14px;
+    color: #1e1e1e;
+    font-weight: 500;
+    height: 46px;
+    line-height: 44px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #c3c9d5;
+
+    div {
+      position: relative;
+      -webkit-box-flex: 1;
+      -ms-flex: 1;
+      flex: 1;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .tabline {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      display: inline-block;
+      width: 0;
+      height: 2px;
+      background: #3d5b96;
+      -webkit-transition: width 0.5s cubic-bezier(0.46, 1, 0.23, 1.52);
+      transition: width 0.5s cubic-bezier(0.46, 1, 0.23, 1.52);
+    }
+  }
+  .next-btn-view {
+    display: flex;
+    justify-content: space-between; /* 让按钮靠两边 */
   }
 </style>

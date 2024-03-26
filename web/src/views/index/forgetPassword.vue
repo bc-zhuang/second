@@ -185,7 +185,7 @@
 
     .regist-padding {
       padding: 0 28px;
-      margin-bottom: 8px;
+      margin-bottom: 5px;
     }
   }
 
@@ -252,10 +252,6 @@
     display: flex;
     justify-content: space-between; /* 让按钮靠两边 */
   }
-
-  //.next-btn {
-  //  padding: 5px 10px; /* 按钮内边距 */
-  //}
 
   .logo-icon {
     margin-top: 20px;
