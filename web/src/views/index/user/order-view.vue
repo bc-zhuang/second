@@ -1,7 +1,6 @@
 <template>
   <div class="content-list">
     <div class="list-title">我的订单</div>
-    <!--    default-active-key="1"-->
     <a-tabs v-model="activeKey" @change="onTabChange">
       <a-tab-pane key="1" tab="全部" />
       <a-tab-pane key="2" tab="待付款" />
@@ -22,6 +21,9 @@
               <a-popconfirm v-if="item.status === '1'" title="确定取消订单？" ok-text="是" cancel-text="否" @confirm="handleCancel(item)">
                 <a-button type="primary" size="small" style="margin-right: 24px">取消</a-button>
               </a-popconfirm>
+              <a-popconfirm v-if="item.status === '1'" title="是否去支付？" ok-text="是" cancel-text="否" @confirm="toPay(item)">
+                <a-button type="primary" size="small" style="margin-right: 24px">去支付</a-button>
+              </a-popconfirm>
               <a-popconfirm
                 v-if="item.status === '3' || item.status === '4'"
                 title="是否确认收货？"
@@ -32,7 +34,6 @@
                 <a-button type="primary" size="small" style="margin-right: 24px">收货</a-button>
               </a-popconfirm>
               <span class="text">订单状态</span>
-              <!--              <span class="state">{{ item.status === '1' ? '待支付' : item.status === '2' ? '已支付' : '已取消' }}</span>-->
               <span class="state">{{
                 item.status === '1'
                   ? '待支付'
@@ -69,6 +70,7 @@
               <p class="name">{{ item.receiverName }} {{ item.receiverPhone }} </p>
               <p class="text mg">{{ item.receiverAddress }} </p>
               <p class="title">快递单号：</p>
+              <p class="text">{{ item.express }}</p>
               <p class="text"> </p>
               <p class="title">备注信息：</p>
               <p class="text">{{ item.remark }} </p>
@@ -125,7 +127,6 @@
                 <a-button type="primary" size="small" style="margin-right: 24px">发货</a-button>
                 <template #icon>
                   <span class="title">快递单号</span>
-                  <!--                  <a-input v-model="expressNumber" placeholder="请输入快递单号" />-->
                   <a-input v-model:value="expressNumber" @update:model-value="updateExpressNumber" placeholder="请输入快递单号" />
                 </template>
               </a-popconfirm>
@@ -195,7 +196,6 @@
       <div class="parent-container">
         <div class="pagination">
           <a @click="prevPage" v-if="currentPage > 1">上一页&nbsp;</a>
-          <!--          <span>第 {{ currentPage }} 页 / 总共 {{ totalPages }} 页</span>-->
           <span>
             跳转至第 <input type="number" v-model="selectedPage" @keyup.enter="goToPage" style="width: 35px; height: 20px" /> 页 / 总共
             {{ totalPages }} 页
@@ -356,29 +356,37 @@
     } else {
       message.error('操作失败');
     }
+  };
 
-    const sendThing = (item) => {
-      // 将 expressNumber.value 中的快递单号写入数据库的逻辑
-      // 这里可以调用接口或方法将数据保存到数据库
-      console.log('输入的快递单号为:', expressNumber.value);
-      updateOrderExpressAndStatusApi({
-        id: item.id,
-        express: expressNumber.value,
+  const sendThing = (item) => {
+    // 将 expressNumber.value 中的快递单号写入数据库的逻辑
+    // 这里可以调用接口或方法将数据保存到数据库
+    console.log('输入的快递单号为:', expressNumber.value);
+    updateOrderExpressAndStatusApi({
+      id: item.id,
+      express: expressNumber.value,
+    })
+      .then((res) => {
+        message.success('发货成功');
+        getOrderList();
       })
-        .then((res) => {
-          message.success('发货成功');
-          getOrderList();
-        })
-        .catch((err) => {
-          message.error(err.msg || '发货失败');
-        });
-      // 清空输入框
-      expressNumber.value = '';
-    };
+      .catch((err) => {
+        message.error(err.msg || '发货失败');
+      });
+    // 清空输入框
+    expressNumber.value = '';
+  };
 
-    const updateExpressNumber = (value) => {
-      expressNumber.value = value; // 更新数据
-    };
+  const updateExpressNumber = (value) => {
+    expressNumber.value = value; // 更新数据
+  };
+
+  const toPay = (item) => {
+    let text = router.resolve({
+      name: 'pay',
+      query: { amount: item.price * item.count, userId: item.userId, thingId: item.thingId, count: item.count },
+    });
+    window.open(text.href, '_blank');
   };
 </script>
 <style scoped lang="less">

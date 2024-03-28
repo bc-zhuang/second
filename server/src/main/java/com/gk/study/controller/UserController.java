@@ -189,6 +189,15 @@ public class UserController {
     @Transactional
     public APIResponse updateUserInfo(User user) throws IOException {
         User tmpUser =  userService.getUserDetail(user.getId());
+        if(userService.userDetailByNickname(user.getId(), user.getNickname()) != null){
+            return new APIResponse(ResponeCode.FAIL, "昵称已存在");
+        }
+        if(userService.userDetailByPhone(user.getId(), user.getMobile()) != null){
+            return new APIResponse(ResponeCode.FAIL, "手机号已存在");
+        }
+        if(userService.userDetailByEmail(user.getId(), user.getEmail()) != null){
+            return new APIResponse(ResponeCode.FAIL, "邮箱已存在");
+        }
         if(tmpUser.getRole().equals(String.valueOf(User.NormalUser))){
             // username和password不能改，故置空
             user.setUsername(null);
@@ -248,8 +257,8 @@ public class UserController {
     }
 
     @RequestMapping(value = "/userDetailByNickname", method = RequestMethod.GET)
-    public APIResponse userDetailByNickname(String nickname){
-        User user = userService.userDetailByNickname(nickname);
+    public APIResponse userDetailByNickname(String id, String nickname){
+        User user = userService.userDetailByNickname(id, nickname);
         if (user != null){
             return new APIResponse(ResponeCode.SUCCESS, "查询成功", user);
         }
@@ -259,8 +268,8 @@ public class UserController {
     }
 
     @RequestMapping(value = "/userDetailByPhone", method = RequestMethod.GET)
-    public APIResponse userDetailByPhone(String phone){
-        User user = userService.userDetailByPhone(phone);
+    public APIResponse userDetailByPhone(String id, String phone){
+        User user = userService.userDetailByPhone(id, phone);
         if (user != null){
             return new APIResponse(ResponeCode.SUCCESS, "查询成功", user);
         }
@@ -270,8 +279,8 @@ public class UserController {
     }
 
     @RequestMapping(value = "/userDetailByEmail", method = RequestMethod.GET)
-    public APIResponse userDetailByEmail(String email){
-        User user = userService.userDetailByEmail(email);
+    public APIResponse userDetailByEmail(String id, String email){
+        User user = userService.userDetailByEmail(id, email);
         if (user != null){
             return new APIResponse(ResponeCode.SUCCESS, "查询成功", user);
         }

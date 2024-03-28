@@ -25,9 +25,9 @@ public interface UserService {
 
     User getUserByEmail(String email);
 
-    User userDetailByNickname(String nickname);
+    User userDetailByNickname(String id, String nickname);
 
-    User userDetailByPhone(String phone);
+    User userDetailByPhone(String id, String phone);
 
-    User userDetailByEmail(String email);
+    User userDetailByEmail(String id, String email);
 }

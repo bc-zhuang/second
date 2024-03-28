@@ -101,7 +101,7 @@
         loading.value = false;
       });
   };
-  const submit = () => {
+  const submit = async () => {
     let formData = new FormData();
     let userId = userStore.user_id;
     formData.append('id', userId);
@@ -110,13 +110,12 @@
       formData.append('avatarFile', tData.form.avatarFile);
     }
     if (tData.form.nickname) {
-      getUserDetailByNicknameApi(tData.form.nickname).then((res) => {
-        console.log("res==>", res);
-        if(res.value != null){
-          message.error('该昵称已存在');
-          return;
-        }
-      })
+      // const res = await getUserDetailByNicknameApi(tData.form.nickname);
+      // console.log('res==>', res);
+      // if (res != null) {
+      //   message.error('该昵称已存在');
+      //   return;
+      // }
       formData.append('nickname', tData.form.nickname);
     }
     if (tData.form.email) {
@@ -148,7 +147,7 @@
         getUserInfo();
       })
       .catch((err) => {
-        message.error(err);
+        message.error(err.msg);
         console.log(err);
       });
   };

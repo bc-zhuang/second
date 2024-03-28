@@ -114,23 +114,26 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
-    public User userDetailByNickname(String nickname) {
+    public User userDetailByNickname(String id,String nickname) {
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("nickname", nickname);
+        queryWrapper.ne("id", id); // 排除 id 等于 id
         return userMapper.selectOne(queryWrapper);
     }
 
     @Override
-    public User userDetailByPhone(String phone) {
+    public User userDetailByPhone(String id, String phone) {
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("mobile", phone);
+        queryWrapper.ne("id", id); // 排除 id 等于 id
         return userMapper.selectOne(queryWrapper);
     }
 
     @Override
-    public User userDetailByEmail(String email) {
+    public User userDetailByEmail(String id, String email) {
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("email", email);
+        queryWrapper.ne("id", id); // 排除 id 等于 id
         return userMapper.selectOne(queryWrapper);
     }
 }

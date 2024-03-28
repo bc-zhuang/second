@@ -3,11 +3,11 @@
     <Header />
     <div class="pay-content">
       <div class="title">订单提交成功</div>
-      <div class="text time-margin">
-        <span>请在 </span>
-        <span class="time">{{ ddlTime }}</span>
-        <span> 之前付款，超时订单将自动取消</span>
-      </div>
+      <!--      <div class="text time-margin">-->
+      <!--        <span>请在 </span>-->
+      <!--        <span class="time">{{ ddlTime }}</span>-->
+      <!--        <span> 之前付款，超时订单将自动取消</span>-->
+      <!--      </div>-->
       <div class="text">支付金额</div>
       <div class="price">
         <span class="num">{{ amount }}</span>
@@ -15,27 +15,36 @@
       </div>
       <div class="pay-choose-view" style="">
         <div class="pay-choose-box flex-view">
-          <div class="choose-box choose-box-active">
+          <!--          <div class="choose-box choose-box-active">-->
+          <div class="choose-box" :class="{ 'choose-box-active': selectedPayment === 'wechat' }" @click="selectPayment('wechat')">
             <img :src="WxPayIcon" />
             <span>微信支付</span>
           </div>
-          <div class="choose-box">
+          <!--          <div class="choose-box">-->
+          <div class="choose-box" :class="{ 'choose-box-active': selectedPayment === 'alipay' }" @click="selectPayment('alipay')">
             <img :src="AliPayIcon" />
             <span>支付宝</span>
           </div>
         </div>
         <div class="tips">请选择任意一种支付方式</div>
-        <div class="tips">userId:{{ userId }}</div>
-        <div class="tips">thingId:{{ thingId }}</div>
-        <button class="pay-btn pay-btn-active" @click="handlePay()">确认支付</button>
+        <!--        <div class="tips">userId:{{ userId }}</div>-->
+        <!--        <div class="tips">thingId:{{ thingId }}</div>-->
+        <!--        <button class="pay-btn pay-btn-active" @click="handlePay()">确认支付</button>-->
+        <button class="pay-btn pay-btn-active" @click="showQRCode()">去支付</button>
       </div>
-      <div class="pay-qr-view" style="display: none">
-        <div class="loading-tip" style="">正在生成安全支付二维码</div>
-        <div class="qr-box" style="display: none">
-          <div id="qrCode" class="qr"> </div>
-          <div class="tips">请打开微信扫一扫进行支付</div>
-          <button class="pay-finish-btn">支付完成</button>
-          <button class="back-pay-btn">选择其他支付方式</button>
+
+      <!-- 弹窗 -->
+      <div class="pay-choose-view" style="">
+        <div v-if="showModal" class="modal">
+          <div class="modal-content">
+            <span class="close" @click="closeModal">&times;</span>
+            <img :src="paymentQRCode" alt="支付二维码" />
+            <div class="button-container">
+              <button class="pay-btn pay-btn-left pay-btn-active" @click="handlePay()">确认支付</button>
+              <div class="spacer"></div>
+              <button class="pay-btn pay-btn-right close-btn" @click="closeModal">关闭弹窗</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -65,9 +74,39 @@
     count.value = route.query.count;
     ddlTime.value = formatDate(new Date().getTime(), 'YY-MM-DD hh:mm:ss');
   });
+  const selectedPayment = ref('wechat');
+  const icons = {
+    wechat: '/@/assets/images/wx-pay-icon.svg',
+    alipay: '/@/assets/images/ali-pay-icon.svg',
+  };
+  const wechatQRCode = '/src/assets/images/logo12.png';
+  const aliPayQRCode = '/src/assets/images/logo.png';
+
+  const showModal = ref(false);
+
+  let selectPayment = (paymentMethod) => {
+    selectedPayment.value = paymentMethod;
+    // 在这里可以添加处理不同支付方式的逻辑
+  };
+
+  // 计算属性，根据选择的支付方式返回对应的二维码路径
+  const paymentQRCode = computed(() => {
+    if (selectedPayment.value === 'wechat') {
+      return wechatQRCode;
+    } else if (selectedPayment.value === 'alipay') {
+      return aliPayQRCode;
+    }
+  });
+
+  const showQRCode = () => {
+    showModal.value = true;
+  };
+
+  const closeModal = () => {
+    showModal.value = false;
+  };
 
   const handlePay = () => {
-    // message.warn('暂无支付功能');
     console.log('userId：' + userId.value);
     console.log('thingId：' + thingId.value);
     const data = {
@@ -238,5 +277,46 @@
         background: #4684e2;
       }
     }
+  }
+  .choose-box {
+    cursor: pointer;
+  }
+
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* 半透明背景 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+  }
+
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+  }
+  .pay-btn {
+    margin-top: 10px; /* 调整按钮与图片之间的间距 */
+  }
+
+  .close-btn {
+    margin-top: 10px;
+  }
+  .pay-btn-right {
+    float: right;
+  }
+  .pay-btn-left {
+    float: left;
   }
 </style>
