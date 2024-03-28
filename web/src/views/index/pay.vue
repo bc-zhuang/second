@@ -79,8 +79,8 @@
     wechat: '/@/assets/images/wx-pay-icon.svg',
     alipay: '/@/assets/images/ali-pay-icon.svg',
   };
-  const wechatQRCode = '/src/assets/images/logo12.png';
-  const aliPayQRCode = '/src/assets/images/logo.png';
+  const wechatQRCode = '/src/assets/images/wechatQRCode.jpg';
+  const aliPayQRCode = '/src/assets/images/aliPayQRCode.jpg';
 
   const showModal = ref(false);
 
@@ -318,5 +318,12 @@
   }
   .pay-btn-left {
     float: left;
+  }
+
+  .modal-content img {
+    max-width: 100%; /* 图片最大宽度为弹窗内容的宽度 */
+    max-height: 400px; /* 图片最大高度为200像素，你可以根据需要调整 */
+    display: block; /* 让图片表现为块级元素 */
+    margin: 0 auto; /* 水平居中图片 */
   }
 </style>
