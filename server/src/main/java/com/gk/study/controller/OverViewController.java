@@ -133,7 +133,8 @@ public class OverViewController {
 
 
         // 热门商品
-        List<Object> popularThings = overviewMapper.getPopularThing();
+//        List<Object> popularThings = overviewMapper.getPopularThing();
+        List<Object> popularThings = overviewMapper.getUserThing();
         map.put("popularThings", popularThings);
 
         // 热门分类

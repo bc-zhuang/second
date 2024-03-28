@@ -36,6 +36,14 @@
           </div>
         </div>
       </div>
+      <div class="regist-padding">
+        <div class="common-input">
+          <div class="input-view">
+            <input placeholder="请输入验证码" v-model="tData.loginForm.repassword" type="text" class="input" />
+            <p class="err-view"> </p>
+          </div>
+        </div>
+      </div>
       <div class="tel-login">
         <div class="next-btn-view">
           <button class="next-btn" @click="handleRegister">注册</button>

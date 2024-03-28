@@ -270,18 +270,22 @@
     if (key === '1') {
       orderStatus.value = '';
       sellerId.value = '';
+      currentPage.value = 1;
     }
     if (key === '2') {
       orderStatus.value = '1';
       sellerId.value = '';
+      currentPage.value = 1;
     }
     if (key === '3') {
       orderStatus.value = '2';
       sellerId.value = '';
+      currentPage.value = 1;
     }
     if (key === '4') {
       sellerId.value = userStore.user_id;
       orderStatus.value = '';
+      currentPage.value = 1;
     }
     activeKey.value = key;
     getOrderList();

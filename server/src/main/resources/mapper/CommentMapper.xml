@@ -11,7 +11,7 @@
     </select>
 
     <select id="selectThingCommentList" parameterType="map" resultType="com.gk.study.entity.Comment">
-        select A.*, B.username, C.title
+        select A.*, B.username, B.nickname, B.avatar, C.title
         from b_comment as A
                  join b_user as B on (A.user_id=B.id)
                  join b_thing as C on (A.thing_id=C.id)
@@ -36,6 +36,42 @@
         </if>
             order by A.comment_time desc;
     </select>
+
+
+    <select id="getThingComment" parameterType="java.lang.Long">
+        select *
+        from b_comment
+        where b_comment.thing_id = #{thingId,jdbcType=BIGINT} order by id desc
+    </select>
+
+    <select id="getUserAllCommentsByUserAllThingList" parameterType="map" resultType="com.gk.study.entity.Comment">
+        SELECT A.id AS t_thing_id, A.title, A.cover, B.nickname, C.*
+        FROM b_thing AS A
+                 JOIN b_user AS B ON B.id = A.user_id
+                 JOIN b_comment AS C ON C.thing_id = A.id
+                 JOIN b_user AS B2 ON B2.id = C.user_id
+        <if test="userId != null">
+            where B.id=#{userId}
+        </if>
+        order by C.comment_time desc;
+    </select>
+
+    <resultMap id="yourResultMap" type="com.gk.study.entity.Comment">
+        <!-- 这里是 b_comment 表中的字段映射 -->
+        <result property="id" column="id"/>
+        <result property="content" column="content"/>
+        <result property="commentTime" column="comment_time"/>
+        <result property="userId" column="user_id"/>
+        <result property="thingId" column="thing_id"/>
+
+        <!-- 下面是从 b_thing 表中映射的字段 -->
+        <result property="thing.id" column="t_thing_id"/>
+        <result property="thing.title" column="title"/>
+        <result property="thing.cover" column="cover"/>
+
+        <!-- 下面是从 b_user 表中映射的字段 -->
+        <result property="user.nickname" column="nickname"/>
+    </resultMap>
 
 
 </mapper>

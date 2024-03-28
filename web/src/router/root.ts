@@ -127,6 +127,11 @@ const constantRouterMap = [
             name: 'thingView',
             component: () => import('/@/views/index/user/thing-view.vue'),
           },
+          {
+            path: 'myThingCommentView',
+            name: 'myThingCommentView',
+            component: () => import('/@/views/index/user/mythingcomment-view.vue'),
+          },
         ],
       },
     ],

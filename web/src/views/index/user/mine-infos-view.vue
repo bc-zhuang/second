@@ -3,9 +3,8 @@
     <div class="info-box flex-view">
       <img :src="tData.form.avatar" class="avatar-img" />
       <div class="name-box">
-        <h2 class="nick">{{ userStore.user_name }}</h2>
+        <h2 class="nick">{{ tData.form.nickname }}</h2>
         <div class="age">
-          <!--          <span>活跃1天</span>-->
           <span class="give-point"></span>
         </div>
       </div>
@@ -21,12 +20,6 @@
           <div class="text">心愿单</div>
           <div class="num">{{ wishCount }}</div>
         </div>
-        <!--        <div class="split-line">-->
-        <!--        </div>-->
-        <!--        <div class="points-box flex-item">-->
-        <!--          <div class="text">积分</div>-->
-        <!--          <div class="num">0</div>-->
-        <!--        </div>-->
       </div>
     </div>
     <div class="order-box">
@@ -44,14 +37,14 @@
           <img :src="CommentIconImg" />
           <span>我的评论</span>
         </div>
+        <div class="mine-item flex-view" @click="clickMenu('myThingCommentView')">
+          <img :src="MessageIconImage" />
+          <span>我的消息</span>
+        </div>
         <div class="mine-item flex-view" @click="clickMenu('addressView')">
           <img :src="AddressIconImage" />
-          <span>地址管理</span>
+          <span>我的地址</span>
         </div>
-        <!--        <div class="mine-item flex-view" @click="clickMenu('scoreView')">-->
-        <!--          <img :src="PointIconImage" />-->
-        <!--          <span>我的积分</span>-->
-        <!--        </div>-->
       </div>
     </div>
     <div class="setting-box">
@@ -65,10 +58,6 @@
           <img :src="SafeIconImage" alt="账号安全" />
           <span>账号安全</span>
         </div>
-        <!--        <div class="mine-item flex-view" @click="clickMenu('pushView')">-->
-        <!--          <img :src="PushIconImage" alt="推送设置" />-->
-        <!--          <span>推送设置</span>-->
-        <!--        </div>-->
         <div class="mine-item flex-view" @click="clickMenu('messageView')">
           <img :src="MessageIconImage" alt="消息管理" />
           <span>消息管理</span>
@@ -79,14 +68,12 @@
 </template>
 
 <script setup lang="ts">
-  import AvatarImg from '/@/assets/images/avatar.jpg';
   import MyOrderImg from '/@/assets/images/order-icon.svg';
   import CommentIconImg from '/@/assets/images/order-thing-icon.svg';
   import AddressIconImage from '/@/assets/images/order-address-icon.svg';
   import PointIconImage from '/@/assets/images/order-point-icon.svg';
   import SettingIconImage from '/@/assets/images/setting-icon.svg';
   import SafeIconImage from '/@/assets/images/setting-safe-icon.svg';
-  import PushIconImage from '/@/assets/images/setting-push-icon.svg';
   import MessageIconImage from '/@/assets/images/setting-msg-icon.svg';
 
   import { userCollectListApi } from '/@/api/thingCollect';
@@ -94,7 +81,7 @@
   import { useUserStore } from '/@/store';
   import { BASE_URL } from '/@/store/constants';
   import { detailApi } from '/@/api/user';
-  import AvatarIcon from "/@/assets/images/avatar.jpg";
+  import AvatarIcon from '/@/assets/images/avatar.jpg';
   const userStore = useUserStore();
   const router = useRouter();
 

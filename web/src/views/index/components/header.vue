@@ -1,7 +1,7 @@
 <template>
   <div class="main-bar-view">
     <div class="logo">
-      <img :src="logoImage" class="search-icon" @click="$router.push({ name: 'portal' })" />
+      <img :src="logo12" class="search-icon" @click="$router.push({ name: 'portal' })" />
     </div>
     <div class="search-entry">
       <img :src="SearchIcon" class="search-icon" />
@@ -70,6 +70,7 @@
   import { listApi } from '/@/api/notice';
   import { useUserStore } from '/@/store';
   import logoImage from '/@/assets/images/k-logo.png';
+  import logo12 from '/@/assets/images/logo12.png';
   import SearchIcon from '/@/assets/images/search-icon.svg';
   import AvatarIcon from '/@/assets/images/avatar.jpg';
   import MessageIcon from '/@/assets/images/message-icon.svg';

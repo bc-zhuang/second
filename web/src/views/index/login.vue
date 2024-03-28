@@ -117,6 +117,7 @@
             console.log('success==>', userStore.user_id);
             console.log('success==>', userStore.user_token);
             console.log('账号状态' + userStore.user_status);
+            console.log('用户头像图片：' + userStore.user_avatar);
           } else {
             console.log('账号状态' + userStore.user_status);
             message.warn('账号被封禁，请联系管理员');

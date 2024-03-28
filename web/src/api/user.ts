@@ -28,6 +28,7 @@ const loginApi = async (data: LoginData) =>
   post<any>({ url: URL.login, data, headers: { 'Content-Type': 'multipart/form-data;charset=utf-8' } });
 const listApi = async (params: any) => get<any>({ url: URL.userList, params: params, data: {}, headers: {} });
 const detailApi = async (params: any) => get<any>({ url: URL.detail, params: params, data: {}, headers: {} });
+const userDetailApi = async (params: any) => get<any>({ url: URL.detail, params: params, data: {}, headers: {} });
 const createApi = async (data: any) =>
   post<any>({ url: URL.create, params: {}, data: data, headers: { 'Content-Type': 'multipart/form-data;charset=utf-8' } });
 const updateApi = async (data: any) =>
@@ -59,4 +60,5 @@ export {
   updateUserPwdApi,
   updateUserInfoApi,
   getUserDetailByUsernameAndEmailApi,
+  userDetailApi,
 };

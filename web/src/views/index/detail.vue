@@ -20,10 +20,10 @@
                   <span class="a-price-symbol">¥</span>
                   <span class="a-price">{{ detailData.price }}</span>
                 </span>
-                <div class="translators flex-view" style="">
-                  <span>分类：</span>
-                  <span class="name">{{ detailData.classification_title }}</span>
-                </div>
+                <!--                <div class="translators flex-view" style="">-->
+                <!--                  <span>分类：</span>-->
+                <!--                  <span class="name">{{ detailData.classification_title }}</span>-->
+                <!--                </div>-->
                 <div class="translators flex-view" style="">
                   <span>库存：</span>
                   <span class="name">{{ detailData.repertory }}</span>
@@ -90,8 +90,8 @@
             <div class="thing-comment" :class="selectTabIndex > 0 ? '' : 'hide'">
               <div class="title">发表新的评论</div>
               <div class="publish flex-view">
-                <img :src="AvatarIcon" class="mine-img" />
-<!--                <img :src="" class="mine-img" />-->
+                <!--                <img :src="AvatarIcon" class="mine-img" />-->
+                <img :src="tData.form.avatar" class="mine-img" />
                 <input placeholder="说点什么..." class="content-input" ref="commentRef" />
                 <button class="send-btn" @click="sendComment()">发送</button>
               </div>
@@ -106,13 +106,21 @@
               <div class="comments-list">
                 <div class="comment-item" v-for="item in commentData">
                   <div class="flex-item flex-view">
-                    <img :src="avatar" class="avator" />
+                    <img :src="BASE_URL + '/api/staticfiles/avatar/' + item.avatar" class="avator" />
                     <div class="person">
-                      <div class="name">{{ item.username }}</div>
+                      <div class="name">
+                        {{ item.nickname }}
+                        <span
+                          v-if="detailData.userId == item.userId"
+                          style="font-family: Arial, sans-serif; font-size: 16px; color: #2a4f88"
+                          >商家</span
+                        >
+                      </div>
+
                       <div class="time">{{ item.commentTime }}</div>
                     </div>
                     <div class="float-right">
-                      <span @click="like(item.id)">推荐</span>
+                      <span @click="like(item.id)">点赞</span>
                       <span class="num">{{ item.likeCount }}</span>
                     </div>
                   </div>
@@ -167,11 +175,21 @@
   import { useRoute, useRouter } from 'vue-router/dist/vue-router';
   import { useUserStore } from '/@/store';
   import { getFormatTime } from '/@/utils';
-  import { detailApi } from '/@/api/user';
+  import { detailApi, userDetailApi } from '/@/api/user';
 
   const router = useRouter();
   const route = useRoute();
   const userStore = useUserStore();
+  let tData = reactive({
+    form: {
+      avatar: undefined,
+      avatarFile: undefined,
+      nickname: undefined,
+      email: undefined,
+      mobile: undefined,
+      description: undefined,
+    },
+  });
 
   let thingId = ref('');
   let detailData = ref({});
@@ -186,17 +204,22 @@
 
   let commentRef = ref();
   let avatar = ref();
+  let nickname = ref();
+  let messageList = ref({});
 
   onMounted(() => {
     thingId.value = route.query.id.trim();
     getThingDetail();
     getRecommendThing();
     getCommentList();
+    getUserInfo();
+    getThingAllComment();
     // ref 来定义 commentData 响应式数据，
     // 并在 onMounted 钩子函数中通过 watch 监听 commentData 数组的变化。
     // 当数组发生变化时，会依次触发 handleCommentItemClick 方法。
     watch(
       commentData,
+      // messageList,
       (newVal) => {
         newVal.forEach((item) => {
           handleCommentItemClick(item);
@@ -206,12 +229,29 @@
     );
   });
 
+  const getUserInfo = () => {
+    let userId = userStore.user_id;
+    userDetailApi({ userId: userId })
+      .then((res) => {
+        tData.form = res.data;
+        if (tData.form.avatar) {
+          tData.form.avatar = BASE_URL + '/api/staticfiles/avatar/' + tData.form.avatar;
+        } else {
+          tData.form.avatar = AvatarIcon;
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const handleCommentItemClick = (item) => {
     let userId = item.userId;
     detailApi({ userId: userId })
       .then((res) => {
         console.log(res.data.avatar);
         avatar.value = BASE_URL + '/api/staticfiles/avatar/' + res.data.avatar;
+        nickname.value = res.data.nickname;
       })
       .catch((err) => {
         console.log(err);
@@ -362,6 +402,20 @@
     }
     order.value = sortType;
     getCommentList();
+  };
+
+  const getThingAllComment = () => {
+    listThingCommentsApi({ thingId: thingId.value })
+      .then((res) => {
+        console.log('getThingAllComment', res.data);
+        res.data.forEach((item) => {
+          item.commentTime = getFormatTime(item.commentTime, true);
+        });
+        messageList.value = res.data;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 </script>
 <style scoped lang="less">

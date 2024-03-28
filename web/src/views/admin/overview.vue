@@ -75,7 +75,7 @@
 
       <a-row :gutter="[20, 20]">
         <a-col :sm="24" :md="24" :lg="12">
-          <a-card title="热门商品排名" style="flex: 1">
+          <a-card title="用户商品排名" style="flex: 1">
             <div style="height: 300px" ref="barChartDiv"></div>
           </a-card>
         </a-col>
@@ -213,11 +213,9 @@
     let xData = [];
     let yData = [];
     tdata.data.popularThings.forEach((item, index) => {
-      xData.push(item.title);
+      xData.push(item.username);
       yData.push(item.count);
     });
-    // const xData = ['遥远的救世主', '平凡的世界', '测试书籍12', '测试书籍13', '测试书籍14', '测试书籍15', '测试书籍16', '测试书籍17']
-    // const yData = [220, 200, 180, 150, 130, 110, 100, 80]
     barChart = echarts.init(barChartDiv.value);
     let option = {
       grid: {
@@ -228,7 +226,7 @@
         bottom: '40px',
       },
       title: {
-        text: '热门商品排名',
+        text: '用户商品排名',
         textStyle: {
           color: '#aaa',
           fontStyle: 'normal',

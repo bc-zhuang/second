@@ -10,9 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.List;
@@ -66,6 +64,13 @@ public class CommentController {
         return new APIResponse(ResponeCode.SUCCESS, "删除成功");
     }
 
+    @RequestMapping(value = "/deleteOne", method = RequestMethod.POST)
+    public APIResponse deleteOne(String id){
+        System.out.println("id===" + id);
+        service.deleteComment(id);
+        return new APIResponse(ResponeCode.SUCCESS, "删除成功");
+    }
+
     @Access(level = AccessLevel.ADMIN)
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     @Transactional
@@ -82,6 +87,13 @@ public class CommentController {
         commentBean.setLikeCount(String.valueOf(likeCount));
         service.updateComment(commentBean);
         return new APIResponse(ResponeCode.SUCCESS, "更新成功");
+    }
+
+    // 用户所有商品收到的评论
+    @RequestMapping(value = "/listUserAllCommentsByUserAllThing", method = RequestMethod.GET)
+    public APIResponse listUserAllCommentsByUserAllThing(String userId){
+        List<Comment> list =  service.getUserAllCommentsByUserAllThingList(userId);
+        return new APIResponse(ResponeCode.SUCCESS, "查询成功", list);
     }
 
 }

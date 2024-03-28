@@ -15,4 +15,6 @@ public interface CommentService {
     List<Comment> getThingCommentList(String thingId, String order);
 
     List<Comment> getUserCommentList(String userId);
+
+    List<Comment> getUserAllCommentsByUserAllThingList(String userId);
 }

@@ -2,7 +2,7 @@
   <a-layout id="components-layout-demo-custom-trigger">
     <a-layout-header style="background: #fff; padding: 0">
       <div class="header">
-        <img class="header-logo" :src="logo" />
+        <img class="header-logo" :src="logo12" />
         <span class="header-title">商城后台管理系统</span>
         <div class="empty"></div>
         <a-button style="margin-right: 24px" @click="handlePreview">前台预览</a-button>
@@ -94,6 +94,7 @@
 <script setup lang="ts">
   import { useRouter, useRoute } from 'vue-router';
   import logo from '/@/assets/images/k-logo.png';
+  import logo12 from '/@/assets/images/logo12.png';
 
   import {
     HomeOutlined,

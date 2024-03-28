@@ -1,7 +1,5 @@
 import { defineStore } from 'pinia';
 import { loginApi as adminLogin, userLoginApi } from '/@/api/user';
-import { setToken, clearToken } from '/@/utils/auth';
-import { UserState } from './types';
 import { USER_ID, USER_NAME, USER_TOKEN, ADMIN_USER_ID, ADMIN_USER_NAME, ADMIN_USER_TOKEN, USER_AVATAR } from '/@/store/constants';
 
 export const useUserStore = defineStore('user', {
@@ -11,6 +9,8 @@ export const useUserStore = defineStore('user', {
     user_id: undefined;
     user_name: undefined;
     user_status: undefined;
+    user_nickname: undefined;
+    user_avatar: undefined;
     user_token: undefined;
     admin_user_token: undefined;
   } => ({
@@ -18,6 +18,8 @@ export const useUserStore = defineStore('user', {
     user_name: undefined,
     user_token: undefined,
     user_status: undefined,
+    user_nickname: undefined,
+    user_avatar: undefined,
     admin_user_id: undefined,
     admin_user_name: undefined,
     admin_user_token: undefined,
@@ -35,6 +37,8 @@ export const useUserStore = defineStore('user', {
           state.user_name = result.data.username;
           state.user_token = result.data.token;
           state.user_status = result.data.status;
+          state.user_nickname = result.data.nickname;
+          state.user_avatar = result.data.avatar;
           console.log('state==>', state);
         });
 
@@ -61,10 +65,14 @@ export const useUserStore = defineStore('user', {
         localStorage.removeItem(USER_ID);
         localStorage.removeItem(USER_NAME);
         localStorage.removeItem(USER_TOKEN);
+        localStorage.removeItem(USER_AVATAR);
 
         state.user_id = undefined;
         state.user_name = undefined;
         state.user_token = undefined;
+        state.user_avatar = undefined;
+        state.user_nickname = undefined;
+        state.user_status = undefined;
       });
     },
 

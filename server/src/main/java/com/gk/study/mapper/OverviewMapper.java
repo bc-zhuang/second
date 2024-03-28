@@ -13,5 +13,6 @@ public interface OverviewMapper extends BaseMapper<Object> {
     List<Object> getPopularThing();
     List<Object> getPopularClassification();
     List<VisitData> getWebVisitData(@Param("day") String day);
+    List<Object> getUserThing();
 
 }

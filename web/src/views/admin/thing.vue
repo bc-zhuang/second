@@ -4,7 +4,7 @@
     <div class="page-view">
       <div class="table-operations">
         <a-space>
-          <a-button type="primary" @click="handleAdd">新增</a-button>
+<!--          <a-button type="primary" @click="handleAdd">新增</a-button>-->
           <a-button @click="handleBatchDelete">批量删除</a-button>
           <a-input-search addon-before="名称" enter-button @search="onSearch" @change="onSearchChange" />
         </a-space>

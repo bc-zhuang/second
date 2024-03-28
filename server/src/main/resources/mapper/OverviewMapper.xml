@@ -26,4 +26,11 @@
         </where>
         group by re_ip
     </select>
+
+    <select id="getUserThing" resultType="java.util.HashMap">
+        select B.username, count(A.id) as count
+        from b_thing A join b_user B on A.user_id=B.id
+        group by B.username
+        order by count desc;
+    </select>
 </mapper>
