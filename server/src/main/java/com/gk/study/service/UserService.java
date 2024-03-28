@@ -22,4 +22,12 @@ public interface UserService {
     User getUserDetailByUsernameAndEmail(String username, String email);
 
     User getUserDetailByNickName(String nickname);
+
+    User getUserByEmail(String email);
+
+    User userDetailByNickname(String nickname);
+
+    User userDetailByPhone(String phone);
+
+    User userDetailByEmail(String email);
 }

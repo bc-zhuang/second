@@ -35,16 +35,16 @@ export function createVitePlugins(isBuild: boolean) {
     // vitePlugins.push(ConfigPagesPlugin());
 
     // 开启.gz压缩  rollup-plugin-gzip
-    vitePlugins.push(ConfigCompressPlugin());
+    // vitePlugins.push(ConfigCompressPlugin());
 
     // 监听配置文件改动重启
     vitePlugins.push(ConfigRestartPlugin());
 
     // 构建时显示进度条
-    vitePlugins.push(ConfigProgressPlugin());
+    // vitePlugins.push(ConfigProgressPlugin());
 
     // 构建时显示进度条
-    vitePlugins.push(ConfigVisualizerConfig());
+    // vitePlugins.push(ConfigVisualizerConfig());
 
 
     return vitePlugins;

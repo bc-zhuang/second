@@ -106,7 +106,13 @@
               <div class="comments-list">
                 <div class="comment-item" v-for="item in commentData">
                   <div class="flex-item flex-view">
-                    <img :src="BASE_URL + '/api/staticfiles/avatar/' + item.avatar" class="avator" />
+                    <div v-if="item.avatar === null">
+                      <img :src="AvatarIcon" class="avator" />
+                    </div>
+                    <div v-else>
+                      <img :src="BASE_URL + '/api/staticfiles/avatar/' + item.avatar" class="avator" />
+                    </div>
+<!--                    <img :src="BASE_URL + '/api/staticfiles/avatar/' + item.avatar" class="avator" />-->
                     <div class="person">
                       <div class="name">
                         {{ item.nickname }}

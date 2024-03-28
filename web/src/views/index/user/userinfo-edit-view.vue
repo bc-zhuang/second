@@ -27,7 +27,7 @@
           <div class="item flex-view">
             <div class="label">手机号</div>
             <div class="right-box">
-              <input type="text" v-model="tData.form.mobile" placeholder="请输入邮箱" maxlength="100" class="input-dom web-input" />
+              <input type="text" v-model="tData.form.mobile" placeholder="请输入手机号" maxlength="100" class="input-dom web-input" />
             </div>
           </div>
           <div class="item flex-view">
@@ -52,7 +52,7 @@
 
 <script setup>
   import { message } from 'ant-design-vue';
-  import { detailApi, updateUserInfoApi } from '/@/api/user';
+  import {detailApi, getUserDetailByNicknameApi, updateUserInfoApi} from '/@/api/user';
   import { BASE_URL } from '/@/store/constants';
   import { useUserStore } from '/@/store';
   import AvatarIcon from '/@/assets/images/avatar.jpg';
@@ -105,16 +105,38 @@
     let formData = new FormData();
     let userId = userStore.user_id;
     formData.append('id', userId);
+
     if (tData.form.avatarFile) {
       formData.append('avatarFile', tData.form.avatarFile);
     }
     if (tData.form.nickname) {
+      getUserDetailByNicknameApi(tData.form.nickname).then((res) => {
+        console.log("res==>", res);
+        if(res.value != null){
+          message.error('该昵称已存在');
+          return;
+        }
+      })
       formData.append('nickname', tData.form.nickname);
     }
     if (tData.form.email) {
+      const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+      if (!tData.form.email.match(emailPattern)) {
+        // 邮箱格式不正确，给出提示
+        console.log('邮箱格式不正确');
+        message.error('请输入正确的邮箱');
+        return;
+      }
       formData.append('email', tData.form.email);
     }
     if (tData.form.mobile) {
+      const mobilePattern = /^[1][3-9]\d{9}$/; // 中国大陆手机号格式，11位数字，以1开头
+      if (!mobilePattern.test(tData.form.mobile)) {
+        // 手机格式不正确，给出提示
+        console.log('手机格式不正确');
+        message.error('请输入正确的手机号');
+        return;
+      }
       formData.append('mobile', tData.form.mobile);
     }
     if (tData.form.description) {
@@ -126,6 +148,7 @@
         getUserInfo();
       })
       .catch((err) => {
+        message.error(err);
         console.log(err);
       });
   };

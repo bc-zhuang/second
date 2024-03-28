@@ -97,6 +97,9 @@ public class UserController {
             if(userService.getUserByUserName(user.getUsername()) != null) {
                 return new APIResponse(ResponeCode.FAIL, "用户名重复");
             }
+            if(userService.getUserByEmail(user.getEmail()) != null){
+                return new APIResponse(ResponeCode.FAIL, "邮箱已存在");
+            }
             // 验证密码
             if(!user.getPassword().equals(user.getRePassword())) {
                 return new APIResponse(ResponeCode.FAIL, "密码不一致");
@@ -242,5 +245,38 @@ public class UserController {
             user.avatar = newFileName;
         }
         return newFileName;
+    }
+
+    @RequestMapping(value = "/userDetailByNickname", method = RequestMethod.GET)
+    public APIResponse userDetailByNickname(String nickname){
+        User user = userService.userDetailByNickname(nickname);
+        if (user != null){
+            return new APIResponse(ResponeCode.SUCCESS, "查询成功", user);
+        }
+        else {
+            return new APIResponse(ResponeCode.FAIL, "查询失败");
+        }
+    }
+
+    @RequestMapping(value = "/userDetailByPhone", method = RequestMethod.GET)
+    public APIResponse userDetailByPhone(String phone){
+        User user = userService.userDetailByPhone(phone);
+        if (user != null){
+            return new APIResponse(ResponeCode.SUCCESS, "查询成功", user);
+        }
+        else {
+            return new APIResponse(ResponeCode.FAIL, "查询失败");
+        }
+    }
+
+    @RequestMapping(value = "/userDetailByEmail", method = RequestMethod.GET)
+    public APIResponse userDetailByEmail(String email){
+        User user = userService.userDetailByEmail(email);
+        if (user != null){
+            return new APIResponse(ResponeCode.SUCCESS, "查询成功", user);
+        }
+        else {
+            return new APIResponse(ResponeCode.FAIL, "查询失败");
+        }
     }
 }

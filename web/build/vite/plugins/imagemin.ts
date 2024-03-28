@@ -1,3 +1,4 @@
+// @ts-ignore
 import viteImagemin from 'vite-plugin-imagemin';
 
 export function ConfigImageminPlugin() {

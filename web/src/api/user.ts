@@ -14,6 +14,9 @@ enum URL {
   updateUserPwd = '/api/user/updatePwd',
   updateUserInfo = '/api/user/updateUserInfo',
   detailByUsernameAndEmail = '/api/user/detailByUsernameAndEmail',
+  userDetailByNickname = '/api/user/userDetailByNickname',
+  userDetailByPhone = '/api/user/userDetailByPhone',
+  userDetailByEmail = '/api/user/userDetailByEmail',
 }
 interface LoginRes {
   token: string;
@@ -47,6 +50,24 @@ const getUserDetailByUsernameAndEmailApi = async (params: any) =>
     params: params,
     headers: {},
   });
+const getUserDetailByNicknameApi = async (params: any) =>
+    get<any>({
+      url: URL.userDetailByNickname,
+      params: params,
+      headers: {},
+    });
+const getUserDetailByPhoneApi = async (params: any) =>
+    get<any>({
+      url: URL.userDetailByPhone,
+      params: params,
+      headers: {},
+    });
+const getUserDetailByEmailApi = async (params: any) =>
+    get<any>({
+      url: URL.userDetailByEmail,
+      params: params,
+      headers: {},
+    });
 
 export {
   loginApi,
@@ -61,4 +82,7 @@ export {
   updateUserInfoApi,
   getUserDetailByUsernameAndEmailApi,
   userDetailApi,
+  getUserDetailByNicknameApi,
+  getUserDetailByPhoneApi,
+  getUserDetailByEmailApi,
 };

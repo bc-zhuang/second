@@ -20,6 +20,15 @@
       </div>
       <div class="regist-padding">
         <div class="common-input">
+          <img :src="MailIcon" class="left-icon" />
+          <div class="input-view">
+            <input placeholder="请输入邮箱" v-model="tData.loginForm.email" type="text" class="input" />
+            <p class="err-view"> </p>
+          </div>
+        </div>
+      </div>
+      <div class="regist-padding">
+        <div class="common-input">
           <img :src="PwdIcon" class="left-icon" />
           <div class="input-view">
             <input placeholder="请输入密码" v-model="tData.loginForm.password" type="password" class="input" />
@@ -38,9 +47,14 @@
       </div>
       <div class="regist-padding">
         <div class="common-input">
+          <img :src="Yanzheng" class="left-icon" />
           <div class="input-view">
-            <input placeholder="请输入验证码" v-model="tData.loginForm.repassword" type="text" class="input" />
+            <input placeholder="请输入验证码" v-model="sidentifyMode" type="text" class="input" />
             <p class="err-view"> </p>
+          </div>
+          <!-- 使用验证码组件 -->
+          <div class="code" @click="refreshCode">
+            <SIdentify :identifyCode="identifyCode" />
           </div>
         </div>
       </div>
@@ -61,36 +75,102 @@
   import PwdIcon from '/@/assets/images/pwd-icon.svg';
   import UserIcon from '/@/assets/images/user-icon.svg';
   import Logo1 from '/@/assets/images/logo1.png';
+  import SIdentify from "/@/views/index/components/Sidentify.vue";
+  import MailIcon from "/@/assets/images/mail-icon.svg";
+  import Yanzheng from "/@/assets/images/yanzheng.svg";
 
   const router = useRouter();
+  let sidentifyMode = ref(''); //输入框验证码
+  let identifyCode = ref(''); //图形验证码
+  let identifyCodes = ref('1234567890abcdefjhijklinopqrsduvwxyz'); //验证码出现的数字和字母
 
   const tData = reactive({
     loginForm: {
       username: '',
       password: '',
       repassword: '',
+      email: '',
     },
   });
 
+  onMounted(() => {
+    identifyCode.value = '';
+    makeCode(identifyCodes.value, 4);
+  });
+
+  // 生成随机数
+  const randomNum = (min, max) => {
+    max = max + 1;
+    return Math.floor(Math.random() * (max - min) + min);
+  };
+  // 随机生成验证码字符串
+  const makeCode = (o, l) => {
+    for (let i = 0; i < l; i++) {
+      identifyCode.value += o[randomNum(0, o.length)];
+    }
+  };
+  // 更新验证码
+  const refreshCode = () => {
+    identifyCode.value = '';
+    makeCode(identifyCodes.value, 4);
+  };
+
   const handleRegister = () => {
     console.log('login');
-    if (tData.loginForm.username === '' || tData.loginForm.password === '' || tData.loginForm.repassword === '') {
+    if (tData.loginForm.username === '' || tData.loginForm.password === '' || tData.loginForm.repassword === '' || tData.loginForm.email === '') {
       message.warn('不能为空！');
       return;
     }
-
-    userRegisterApi({
-      username: tData.loginForm.username,
-      password: tData.loginForm.password,
-      rePassword: tData.loginForm.repassword,
-    })
-      .then((res) => {
-        message.success('注册成功！');
-        router.push({ name: 'login' });
+    if (tData.loginForm.password !== tData.loginForm.repassword) {
+      message.warn('密码不一致！');
+      return;
+    }
+    if (!sidentifyMode.value) {
+      message.error('验证码不能为空');
+      console.log('验证码为空');
+      return;
+    }
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    if (!tData.loginForm.email.match(emailPattern)) {
+      // 邮箱格式不正确，给出提示
+      console.log('邮箱格式不正确');
+      message.error('请检查邮箱格式');
+      return;
+    }
+    //验证验证码是否正确
+    if (sidentifyMode.value != identifyCode.value) {
+      message.error('验证码错误');
+      console.log('验证码错误，输入为：' + identifyCode.value);
+      // refreshCode();
+      return;
+    }else {
+      userRegisterApi({
+        username: tData.loginForm.username,
+        password: tData.loginForm.password,
+        rePassword: tData.loginForm.repassword,
+        email : tData.loginForm.email,
       })
-      .catch((err) => {
-        message.error(err.msg || '注册失败');
-      });
+          .then((res) => {
+            message.success('注册成功！');
+            router.push({ name: 'login' });
+          })
+          .catch((err) => {
+            message.error(err.msg || '注册失败');
+          });
+    }
+
+    // userRegisterApi({
+    //   username: tData.loginForm.username,
+    //   password: tData.loginForm.password,
+    //   rePassword: tData.loginForm.repassword,
+    // })
+    //   .then((res) => {
+    //     message.success('注册成功！');
+    //     router.push({ name: 'login' });
+    //   })
+    //   .catch((err) => {
+    //     message.error(err.msg || '注册失败');
+    //   });
   };
   const back = () => {
     router.push({ name: 'login' });
@@ -160,7 +240,8 @@
 
     .regist-padding {
       padding: 0 28px;
-      margin-bottom: 5px;
+      margin-bottom: 1px;
+      height: 50px;
     }
   }
 
