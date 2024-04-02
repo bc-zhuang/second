@@ -52,10 +52,10 @@
               <folder-outlined />
             </template>
             <template #title>运营管理</template>
-            <a-menu-item key="ad">
-              <appstore-outlined />
-              <span>广告管理</span>
-            </a-menu-item>
+<!--            <a-menu-item key="ad">-->
+<!--              <appstore-outlined />-->
+<!--              <span>广告管理</span>-->
+<!--            </a-menu-item>-->
             <a-menu-item key="notice">
               <appstore-outlined />
               <span>通知公告</span>

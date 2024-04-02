@@ -123,6 +123,7 @@ public class AccessInterceptor extends HandlerInterceptorAdapter {
         service.createOpLog(opLog);
     }
 
+    // 将API响应写入HTTP响应中，并设置响应的相关属性
     public void writeResponse(HttpServletResponse response, APIResponse apiResponse) throws IOException {
         response.setStatus(200);
         response.setHeader("Access-Control-Allow-Origin", "*");

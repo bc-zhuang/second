@@ -33,7 +33,7 @@
   import { BASE_URL } from '/@/store/constants';
   import { getFormatTime } from '/@/utils';
   import { message } from 'ant-design-vue';
-  import {userDetailApi} from "/@/api/user";
+  import { userDetailApi } from '/@/api/user';
 
   const loading = ref(false);
 
@@ -48,35 +48,14 @@
     window.open(text.href, '_blank');
   };
 
-  // const getCommentList = () => {
-  //   loading.value = true;
-  //   let userId = userStore.user_id;
-  //   listUserAllCommentsByUserAllThingApi({ userId: userId })
-  //     .then((res) => {
-  //       res.data.forEach((item) => {
-  //         console.log('item==>:' + item.userId);
-  //         item.cover = BASE_URL + '/api/staticfiles/image/' + item.cover;
-  //         userDetailApi({ userId: item.userId }).then((res) => {
-  //           console.log('res.data.nickname==>:' + res.data.nickname);
-  //           item.nickname = res.data.nickname;
-  //         });
-  //         console.log('nickname===>:' + item.nickname);
-  //       });
-  //       commentData.value = res.data;
-  //       loading.value = false;
-  //     })
-  //     .catch((err) => {
-  //       message.error(err.msg || '网络异常');
-  //       loading.value = false;
-  //     });
-  // };
-
   const getCommentList = async () => {
     try {
       loading.value = true;
       let userId = userStore.user_id;
       let res = await listUserAllCommentsByUserAllThingApi({ userId: userId });
-      let commentList = res.data;
+      let commentList1 = res.data;
+      // 过滤掉自身的评论
+      let commentList = commentList1.filter((comment) => comment.userId !== userStore.user_id);
 
       for (let item of commentList) {
         console.log('item==>:' + item.userId);

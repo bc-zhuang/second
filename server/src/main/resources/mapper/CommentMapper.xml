@@ -45,7 +45,7 @@
     </select>
 
     <select id="getUserAllCommentsByUserAllThingList" parameterType="map" resultType="com.gk.study.entity.Comment">
-        SELECT A.id AS t_thing_id, A.title, A.cover, B.nickname, C.*
+        SELECT A.id AS t_thing_id, A.title, A.cover, B.nickname, B.id, C.*
         FROM b_thing AS A
                  JOIN b_user AS B ON B.id = A.user_id
                  JOIN b_comment AS C ON C.thing_id = A.id
