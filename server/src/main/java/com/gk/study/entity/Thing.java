@@ -43,11 +43,17 @@ public class Thing implements Serializable {
     public Long classificationId;
     @TableField
     public int userId;
+    @TableField
+    public String imageUrls;
 
     @TableField(exist = false)
     public List<Long> tags; // 标签
 
     @TableField(exist = false)
     public MultipartFile imageFile;
+
+    @TableField(exist = false)
+    public MultipartFile[] imageFiles;
+
 
 }

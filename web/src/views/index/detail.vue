@@ -84,6 +84,9 @@
             <!--简介-->
             <div class="thing-intro" :class="selectTabIndex <= 0 ? '' : 'hide'">
               <p class="text" style="">{{ detailData.description }}</p>
+              <div v-if="imageUrls !== null">
+                <img v-for="imageUrl in imageUrls" :src="imageUrl" :key="imageUrl" alt="Image" class="thumbnail" />
+              </div>
             </div>
 
             <!--评论-->
@@ -112,7 +115,6 @@
                     <div v-else>
                       <img :src="BASE_URL + '/api/staticfiles/avatar/' + item.avatar" class="avator" />
                     </div>
-<!--                    <img :src="BASE_URL + '/api/staticfiles/avatar/' + item.avatar" class="avator" />-->
                     <div class="person">
                       <div class="name">
                         {{ item.nickname }}
@@ -268,13 +270,23 @@
     tabUnderLeft.value = 6 + 54 * index;
   };
 
+  const imageUrls = ref([]);
   const getThingDetail = () => {
     detailThingApi({ id: thingId.value })
       .then((res) => {
         detailData.value = res.data;
         detailData.value.cover = BASE_URL + '/api/staticfiles/image/' + detailData.value.cover;
+        if (detailData.value.imageUrls != null) {
+          // 去除字符串前后的方括号
+          const strippedString = detailData.value.imageUrls.substring(1, detailData.value.imageUrls.length - 1);
+          // 使用逗号分割字符串
+          const items = strippedString.split(',');
+          // 对数组进行处理
+          imageUrls.value = items.map((item) => BASE_URL + '/api/staticfiles/image/' + item.trim());
+        }
       })
       .catch((err) => {
+        console.log(err);
         message.error('获取详情失败');
       });
   };
@@ -1020,5 +1032,10 @@
   .a-price {
     color: #0f1111;
     font-size: 21px;
+  }
+
+  .thumbnail {
+    width: 600px; /* 设置图片宽度 */
+    height: auto; /* 根据宽度等比例调整高度 */
   }
 </style>

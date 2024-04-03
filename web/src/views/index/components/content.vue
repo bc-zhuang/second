@@ -92,7 +92,8 @@
 
     page: 1,
     total: 0,
-    pageSize: 12,
+    // pageSize: 12,
+    pageSize: 9,
   });
 
   onMounted(() => {

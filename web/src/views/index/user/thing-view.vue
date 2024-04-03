@@ -26,7 +26,7 @@
           showTotal: (total) => `共${total}条数据`,
         }"
       >
-        <template #bodyCell="{ text, record, index, column }">
+        <template #bodyCell="{ record, index, column }">
           <template v-if="column.key === 'operation'">
             <span>
               <a @click="handleEdit(record)">编辑</a>
@@ -43,7 +43,7 @@
     <!--弹窗区域-->
     <div>
       <a-modal
-        :visible="modal.visile"
+        :visible="modal.visible"
         :forceRender="true"
         :title="modal.title"
         width="880px"
@@ -99,6 +99,24 @@
                     </p>
                     <p class="ant-upload-text"> 请选择要上传的封面图片 </p>
                   </a-upload-dragger>
+                </a-form-item>
+              </a-col>
+
+              <a-col span="24">
+                <a-form-item label="商品图片">
+                  <a-upload
+                      name="imageFiles"
+                      accept="image/*"
+                      :multiple="true"
+                      :before-upload="beforeUpload1"
+                      v-model:fileList="fileList1"
+                  >
+                    <template v-for="(file, index) in imageFiles">
+                      <img :src="BASE_URL + '/api/staticfiles/image/' + file.name" v-if="file" style="width: 60px; height: 80px" />
+                      <file-image-outlined v-else />
+                    </template>
+                    <p class="ant-upload-text">点击或拖拽上传图片</p>
+                  </a-upload>
                 </a-form-item>
               </a-col>
 
@@ -227,8 +245,29 @@
     return false;
   };
 
+  const beforeUpload1 = (file: File | null) => {
+    console.log('调用beforeUpload1:', file);
+    if (!file) {
+      console.log('file为空：', file);
+      return false; // 如果文件对象为空，则返回 false
+    }
+
+    // 改文件名
+    const fileName = new Date().getTime().toString() + '.' + file.type.substring(6);
+    const copyFile = new File([file], fileName);
+    console.log(copyFile);
+    // 将处理后的文件添加到 modal.form.imageFiles 数组中
+    imageFiles.value.push(copyFile);
+
+    console.log(imageFiles.value);
+
+    return false; // 阻止文件上传
+  };
+
   // 文件列表
   const fileList = ref<any[]>([]);
+  let imageFiles = ref<File[]>([]);
+  const fileList1 = ref<any[]>([]);
 
   // 页面数据
   const data = reactive({
@@ -242,7 +281,7 @@
 
   // 弹窗数据源
   const modal = reactive({
-    visile: false,
+    visible: false,
     editFlag: false,
     title: '',
     cData: [],
@@ -259,6 +298,9 @@
       coverUrl: undefined,
       imageFile: undefined,
       userId: undefined,
+      description: undefined,
+      imageUrls: [],
+      imageFiles: [],
     },
     rules: {
       title: [{ required: true, message: '请输入名称', trigger: 'change' }],
@@ -331,7 +373,7 @@
 
   const handleAdd = () => {
     resetModal();
-    modal.visile = true;
+    modal.visible = true;
     modal.editFlag = false;
     modal.title = '新增';
     // 重置
@@ -339,10 +381,11 @@
       modal.form[key] = undefined;
     }
     modal.form.cover = undefined;
+    imageFiles = ref<File[]>([]);
   };
   const handleEdit = (record: any) => {
     resetModal();
-    modal.visile = true;
+    modal.visible = true;
     modal.editFlag = true;
     modal.title = '编辑';
     // 重置
@@ -358,6 +401,7 @@
       modal.form.coverUrl = BASE_URL + '/api/staticfiles/image/' + modal.form.cover;
       modal.form.cover = undefined;
     }
+    imageFiles = ref<File[]>([]);
   };
 
   const confirmDelete = (record: any) => {
@@ -412,6 +456,13 @@
         if (modal.form.imageFile) {
           formData.append('imageFile', modal.form.imageFile);
         }
+
+        if (imageFiles.value) {
+          imageFiles.value.forEach((file) => {
+            formData.append('imageFiles', file); // 直接添加File对象到FormData
+          });
+        }
+
         formData.append('description', modal.form.description || '');
         formData.append('price', modal.form.price || '');
         if (modal.form.repertory >= 0) {
@@ -461,7 +512,7 @@
 
   // 关闭弹窗
   const hideModal = () => {
-    modal.visile = false;
+    modal.visible = false;
   };
 </script>
 

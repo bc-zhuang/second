@@ -19,6 +19,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -55,18 +57,18 @@ public class ThingController {
         return new APIResponse(ResponeCode.SUCCESS, "查询成功", thing);
     }
 
-    @Access(level = AccessLevel.ADMIN)
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
-    @Transactional
-    public APIResponse create(Thing thing) throws IOException {
-        String url = saveThing(thing);
-        if(!StringUtils.isEmpty(url)) {
-            thing.cover = url;
-        }
-
-        service.createThing(thing);
-        return new APIResponse(ResponeCode.SUCCESS, "创建成功");
-    }
+//    @Access(level = AccessLevel.ADMIN)
+//    @RequestMapping(value = "/create", method = RequestMethod.POST)
+//    @Transactional
+//    public APIResponse create(Thing thing) throws IOException {
+//        String url = saveThing(thing);
+//        if(!StringUtils.isEmpty(url)) {
+//            thing.cover = url;
+//        }
+//
+//        service.createThing(thing);
+//        return new APIResponse(ResponeCode.SUCCESS, "创建成功");
+//    }
 
     @Access(level = AccessLevel.ADMIN)
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
@@ -90,6 +92,11 @@ public class ThingController {
             thing.cover = url;
         }
 
+        List<String> urls = saveThings(thing);
+        if(!StringUtils.isEmpty(urls)) {
+            thing.imageUrls = urls.toString();
+        }
+
         service.updateThing(thing);
         return new APIResponse(ResponeCode.SUCCESS, "更新成功");
     }
@@ -102,7 +109,9 @@ public class ThingController {
             // 存文件
             String oldFileName = file.getOriginalFilename();
             String randomStr = UUID.randomUUID().toString();
-            newFileName = randomStr + oldFileName.substring(oldFileName.lastIndexOf("."));
+            if (oldFileName != null) {
+                newFileName = randomStr + oldFileName.substring(oldFileName.lastIndexOf("."));
+            }
             String filePath = uploadPath + File.separator + "image" + File.separator + newFileName;
             File destFile = new File(filePath);
             if(!destFile.getParentFile().exists()){
@@ -115,5 +124,52 @@ public class ThingController {
         }
         return newFileName;
     }
+
+    @Access(level = AccessLevel.ADMIN)
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @Transactional
+    public APIResponse create(Thing thing) throws IOException {
+        String url = saveThing(thing);
+        if(!StringUtils.isEmpty(url)) {
+            thing.cover = url;
+        }
+
+        List<String> urls = saveThings(thing);
+        thing.setImageUrls(urls.toString());
+
+        service.createThing(thing);
+        return new APIResponse(ResponeCode.SUCCESS, "创建成功");
+    }
+
+
+    public List<String> saveThings(Thing thing) throws IOException {
+        List<String> fileNames = new ArrayList<>();
+
+        MultipartFile[] files = thing.getImageFiles(); // 假设getImageFiles()方法返回MultipartFile数组
+
+        System.out.println("获取到的图片数组：" + Arrays.toString(files));
+
+        if (files != null && files.length > 0) {
+            for (MultipartFile file : files) {
+                if (file != null && !file.isEmpty()) {
+                    // 存文件
+                    String oldFileName = file.getOriginalFilename();
+                    String randomStr = UUID.randomUUID().toString();
+                    String newFileName = randomStr + oldFileName.substring(oldFileName.lastIndexOf("."));
+                    String filePath = uploadPath + File.separator + "image" + File.separator + newFileName;
+                    File destFile = new File(filePath);
+                    if (!destFile.getParentFile().exists()) {
+                        destFile.getParentFile().mkdirs();
+                    }
+                    file.transferTo(destFile);
+                    fileNames.add(newFileName);
+                }
+            }
+        }
+
+        System.out.println("fileNames:" + fileNames);
+        return fileNames;
+    }
+
 
 }
