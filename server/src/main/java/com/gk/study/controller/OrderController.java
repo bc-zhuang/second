@@ -2,6 +2,7 @@ package com.gk.study.controller;
 
 import com.gk.study.common.APIResponse;
 import com.gk.study.common.ResponeCode;
+import com.gk.study.config.ExcelUtils;
 import com.gk.study.entity.Order;
 import com.gk.study.permission.Access;
 import com.gk.study.permission.AccessLevel;
@@ -10,12 +11,21 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.List;
+
+import cn.hutool.core.collection.CollUtil;
+import cn.hutool.poi.excel.ExcelReader;
+import cn.hutool.poi.excel.ExcelUtil;
+import cn.hutool.poi.excel.ExcelWriter;
 
 @RestController
 @RequestMapping("/order")
@@ -144,6 +154,17 @@ public class OrderController {
         order.setStatus("5"); // 5=已收货
         service.updateOrder(order);
         return new APIResponse(ResponeCode.SUCCESS, "收货成功");
+    }
+
+    /**
+     * 导出
+     * @param
+     * @return
+     */
+    @GetMapping("/export")
+    public void export(HttpServletResponse response) {
+        List<Order> orders = service.getOrderList();
+        ExcelUtils.exportExcel(orders, "订单信息", "订单数据", Order.class, "订单信息.xlsx", true, response);
     }
 
 }

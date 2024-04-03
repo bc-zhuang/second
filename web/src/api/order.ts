@@ -14,6 +14,7 @@ enum URL {
   updateOrderExpressAndStatus = '/api/order/updateOrderExpressAndStatus',
   updateOrderPayStatus = '/api/order/updateOrderPayStatus',
   updateUserOrderStatus5 = '/api/order/updateUserOrderStatus5',
+  export = '/api/order/export',
 }
 
 const listApi = async (params: any) => get<any>({ url: URL.list, params: params, data: {}, headers: {} });
@@ -60,6 +61,12 @@ const updateUserOrderStatus5Api = async (data: any) =>
     data: data,
     headers: { 'Content-Type': 'multipart/form-data;charset=utf-8' },
   });
+const exportApi = async () =>
+  get<any>({
+    url: URL.export,
+    responseType: 'blob', // 声明响应类型为二进制数据
+    headers: {},
+  });
 
 export {
   listApi,
@@ -73,4 +80,5 @@ export {
   updateOrderExpressAndStatusApi,
   updateOrderPayStatusApi,
   updateUserOrderStatus5Api,
+  exportApi,
 };

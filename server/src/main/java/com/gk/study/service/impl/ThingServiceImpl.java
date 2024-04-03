@@ -34,8 +34,10 @@ public class ThingServiceImpl extends ServiceImpl<ThingMapper, Thing> implements
         if (StringUtils.isNotBlank(sort)) {
             if (sort.equals("recent")) {
                 queryWrapper.orderBy(true, false, "create_time");
-            } else if (sort.equals("hot") || sort.equals("recommend")) {
-                queryWrapper.orderBy(true, false, "pv");
+            } else if (sort.equals("hot")) {
+                queryWrapper.orderBy(true, false, "collect_count");
+            } else if (sort.equals("recommend")) {
+                queryWrapper.orderBy(true, false, "wish_count");
             }
         }else {
             queryWrapper.orderBy(true, false, "create_time");

@@ -2,7 +2,11 @@ package com.gk.study.controller;
 
 import com.gk.study.common.APIResponse;
 import com.gk.study.common.ResponeCode;
+import com.gk.study.config.ExcelUtils;
 import com.gk.study.entity.Comment;
+import com.gk.study.entity.Order;
+import com.gk.study.filter.WordContext;
+import com.gk.study.filter.WordFilter;
 import com.gk.study.permission.Access;
 import com.gk.study.permission.AccessLevel;
 import com.gk.study.service.CommentService;
@@ -12,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
@@ -48,6 +53,14 @@ public class CommentController {
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @Transactional
     public APIResponse create(Comment comment) throws IOException {
+
+
+        WordContext wordContext = new WordContext();
+        WordFilter filter = new WordFilter(wordContext);
+        String encodeComment = filter.replace(comment.getContent());
+        comment.setContent(encodeComment);
+
+
         service.createComment(comment);
         return new APIResponse(ResponeCode.SUCCESS, "创建成功");
     }
@@ -95,5 +108,6 @@ public class CommentController {
         List<Comment> list =  service.getUserAllCommentsByUserAllThingList(userId);
         return new APIResponse(ResponeCode.SUCCESS, "查询成功", list);
     }
+
 
 }
